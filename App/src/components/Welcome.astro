@@ -1,45 +1,56 @@
 ---
 import LightRays from "./externalComponents/LightRays"
 import BlobCursor from "./externalComponents/BlobCursor"
+import HeroText from "./HeroText"
 ---
 
 
 <div id="container" class="w-full h-full">
-	<main class="w-full h-full relative">
+	<div id="blob-wrapper">
 		<BlobCursor
 		  blobType="circle"
-		  fillColor="#00ffff"
-		  trailCount={3}
-		  sizes={[45,45,45]}
-		  innerSizes={[20,20,20]}
-		  innerColor="rgba(255,255,255,0.95)"
-		  opacities={[0.35,0.6,0.6]}
-  		  shadowColor="rgba(0, 255, 255, 0.9)"
-          shadowBlur={30}
-  		  shadowOffsetX={0}
-  		  shadowOffsetY={0}
-		  filterStdDeviation={20}
-		  useFilter={true}
+		  fillColor="#e0bef8"
+		  trailCount={1}
+		  sizes={[45]}
+		  innerSizes={[0,0,0]}
+		  innerColor="rgba(224, 190, 248, 0.3)"
+		  opacities={[1]}
+		  shadowColor="rgba(224, 190, 248, 0.9)"
+		  shadowBlur={40}
+		  shadowOffsetX={0}
+	      shadowOffsetY={0}
+		  filterStdDeviation={0}
+		  useFilter={false}
 		  fastDuration={0.1}
 		  slowDuration={0.2}
 		  zIndex={100}
 		  client:load
 		/>
-		<LightRays
-  		  raysOrigin="top-center"
-  		  raysColor="#00ffff"
-  		  raysSpeed={1}
-  		  lightSpread={1}
-  		  rayLength={3}
-  		  pulsating={false}
-  		  fadeDistance={1}
-  		  saturation={2}
-  		  followMouse={false}
-  		  mouseInfluence={0.1}
-  		  noiseAmount={0}
-  		  distortion={0}
-		  client:load
-  		/>
+	</div>
+	<LightRays
+		raysOrigin="top-center"
+		raysColor="#63328e"
+		raysSpeed={1}
+		lightSpread={3}
+		rayLength={60}
+		pulsating={false}
+		fadeDistance={1}
+		saturation={2}
+		followMouse={false}
+		mouseInfluence={0.1}
+		noiseAmount={0}
+		distortion={0}
+	  client:load
+	  />
+	<main class="w-full h-full relative">
+		<HeroText client:load/>
 	</main>
 </div>
+
+<script>
+  const wrapper = document.getElementById('blob-wrapper')
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    wrapper?.remove()
+  }
+</script>
 

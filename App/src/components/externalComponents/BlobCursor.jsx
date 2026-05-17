@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import gsap from 'gsap';
 import './BlobCursor.css';
 
@@ -24,11 +24,11 @@ export default function BlobCursor({
   slowDuration = 0.5,
   fastEase = 'power3.out',
   slowEase = 'power1.out',
-  zIndex = 100
+  zIndex = 20
 }) {
   const containerRef = useRef(null);
   const blobsRef = useRef([]);
-
+  const [isTouch, setIsTouch] = useState(true)
   const updateOffset = useCallback(() => {
     if (!containerRef.current) return { left: 0, top: 0 };
     const rect = containerRef.current.getBoundingClientRect();
@@ -40,6 +40,8 @@ export default function BlobCursor({
       const { left, top } = updateOffset();
       const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
       const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
+
+      window.dispatchEvent(new CustomEvent('blob-move', { detail: { x, y } }));
 
       blobsRef.current.forEach((el, i) => {
         if (!el) return;
@@ -56,10 +58,13 @@ export default function BlobCursor({
   );
 
   useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
     const onResize = () => updateOffset();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, [updateOffset]);
+
+  if (isTouch) return null
 
   return (
     <div
