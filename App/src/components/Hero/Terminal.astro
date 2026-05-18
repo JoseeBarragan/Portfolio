@@ -1,0 +1,130 @@
+---
+---
+<div class="terminal">
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <div class="dots">
+      <span class="dot red" />
+      <span class="dot yellow" />
+      <span class="dot green" />
+    </div>
+    <div class="tab">
+      <span class="dot-blue">●</span>
+      developer.ts
+    </div>
+  </div>
+
+  <!-- Code -->
+  <div class="code-area">
+    <div class="line-numbers">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div>{i + 1}</div>
+      ))}
+    </div>
+    <div class="code-lines">
+      <div class="line">
+        <span class="ts-keyword">const</span> <span class="ts-var">developer</span> <span class="ts-op">=</span> <span class="ts-brace">{`{`}</span>
+      </div>
+      <div class="line indent">
+        <span class="ts-key">name</span><span class="ts-op">:</span> <span class="ts-string">"José Barragán"</span><span class="ts-op">,</span>
+      </div>
+      <div class="line indent">
+        <span class="ts-key">role</span><span class="ts-op">:</span> <span class="ts-fn">infer</span><span class="ts-paren">(</span><span class="ts-string">"Fullstack Developer"</span><span class="ts-paren">)</span><span class="ts-op">,</span>
+      </div>
+      <div class="line indent">
+        <span class="ts-key">stack</span><span class="ts-op">:</span> <span class="ts-brace">[</span><span class="ts-string">"Node"</span><span class="ts-op">,</span> <span class="ts-string">"NestJS"</span><span class="ts-op">,</span> <span class="ts-string">"React"</span><span class="ts-op">,</span> <span class="ts-string">"TypeScript"</span><span class="ts-op">,</span> <span class="ts-string">"Postgres"</span><span class="ts-brace">]</span><span class="ts-op">,</span>
+      </div>
+      <div class="line indent">
+        <span class="ts-key">bugs</span><span class="ts-op">:</span> <span class="ts-fn">deny</span><span class="ts-paren">(</span><span class="ts-string">"all of them"</span><span class="ts-paren">)</span><span class="ts-op">,</span>
+      </div>
+      <div class="line">
+        <span class="ts-brace">{`}`}</span> <span class="ts-keyword">as</span> <span class="ts-type">Developer</span><span class="ts-op">;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span>TypeScript</span>
+    <span>UTF-8</span>
+  </div>
+</div>
+
+<style>
+  .terminal {
+    width: clamp(400px, 40vw, 500px);
+    background: #1e1e2e;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.8rem;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px #313244;
+  }
+  .tab-bar {
+    background: #181825;
+    border-bottom: 1px solid #313244;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 36px;
+  }
+  .dots { display: flex; gap: 6px; }
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: block;
+  }
+  .red    { background: #ff5f57; }
+  .yellow { background: #febc2e; }
+  .green  { background: #28c840; }
+  .tab {
+    margin-left: 0.5rem;
+    background: #1e1e2e;
+    border: 1px solid #313244;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    padding: 4px 16px;
+    color: #cdd6f4;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot-blue { color: #89b4fa; }
+  .code-area {
+    display: flex;
+    padding: 1.2rem 0;
+  }
+  .line-numbers {
+    min-width: 40px;
+    text-align: right;
+    padding-right: 1rem;
+    color: #45475a;
+    user-select: none;
+    line-height: 1.8;
+  }
+  .code-lines { line-height: 1.8; padding-right: 1.2rem; }
+  .line { display: block; }
+  .indent { padding-left: 1.5rem; }
+  .status-bar {
+    background: #89b4fa;
+    padding: 2px 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #1e1e2e;
+    font-weight: 600;
+  }
+
+  /* Syntax highlighting — is:global para q no se scoped */
+  :global(.ts-keyword) { color: #cba6f7; }
+  :global(.ts-var)     { color: #89dceb; }
+  :global(.ts-key)     { color: #89b4fa; }
+  :global(.ts-type)    { color: #f9e2af; }
+  :global(.ts-string)  { color: #a6e3a1; }
+  :global(.ts-fn)      { color: #89dceb; }
+  :global(.ts-op)      { color: #cdd6f4; }
+  :global(.ts-brace)   { color: #cba6f7; }
+  :global(.ts-paren)   { color: #fab387; }
+</style>

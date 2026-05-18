@@ -1,0 +1,58 @@
+---
+import LightRays from "../externalComponents/LightRays"
+import HeroText from "../Hero/HeroText"
+import VSTerminal from "./HeroTerminal"
+import Terminal from "./Terminal.astro"
+---
+
+
+<div id="container" class="w-full h-full">
+	<LightRays
+		raysOrigin="top-center"
+		raysColor="#63328e"
+		raysSpeed={1}
+		lightSpread={3}
+		rayLength={60}
+		pulsating={false}
+		fadeDistance={1}
+		saturation={2}
+		followMouse={false}
+		mouseInfluence={0.1}
+		noiseAmount={0}
+		distortion={0}
+	  	client:load
+	  />
+	<main class="w-full h-full relative">
+		<div class="w-full h-full relative flex items-center justify-center">
+  
+		  <!-- Terminal mobile: absolute detrás -->
+		  <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none md:hidden">
+		    <VSTerminal client:load>
+		      <Terminal />
+		    </VSTerminal>
+		  </div>
+	  
+		  <!-- Layout principal -->
+		  <div class="relative flex flex-col md:flex-row items-center justify-center w-full md:w-auto"
+		       style="gap: clamp(1rem, 4vw, 4rem); padding: clamp(1rem, 3vw, 2rem)">
+
+		    <HeroText client:load/>
+	  
+		    <div class="hidden md:block shrink-0">
+		      <VSTerminal client:load>
+		        <Terminal />
+		      </VSTerminal>
+		    </div>
+		
+		  </div>
+		</div>
+	</main>
+</div>
+
+<script>
+  const wrapper = document.getElementById('blob-wrapper')
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    wrapper?.remove()
+  }
+</script>
+

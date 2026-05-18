@@ -14,6 +14,13 @@ h1 {
   font-family: 'Bebas Neue', sans-serif;
 }
 
+.curved-text {
+  fill: black;
+  font-size: 4rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.1em;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

@@ -34,9 +34,11 @@ export default function BlobCursor({
     const rect = containerRef.current.getBoundingClientRect();
     return { left: rect.left, top: rect.top };
   }, []);
+  const isOverriding = useRef(false)
 
   const handleMove = useCallback(
     e => {
+      if (isOverriding.current) return
       const { left, top } = updateOffset();
       const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
       const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
@@ -58,11 +60,55 @@ export default function BlobCursor({
   );
 
   useEffect(() => {
+    const handleOverride = (e) => {
+    isOverriding.current = true
+    const { left, top } = updateOffset()
+    blobsRef.current.forEach((el) => {
+      if (!el) return
+      gsap.to(el, {
+        x: e.detail.x - left,
+        y: e.detail.y - top,
+        duration: 0.4,
+        ease: 'elastic.out(1, 0.5)',
+      })
+    })
+  }
+
+    const handleRelease = () => {
+      isOverriding.current = false
+    }
+
+    const handleScale = (e) => {
+      blobsRef.current.forEach((el) => {
+        if (!el) return
+        gsap.to(el, {
+          height: e.detail.height,
+          borderRadius: e.detail.radius,
+          duration: 0.4,
+          ease: 'power3.out',
+        })
+      })
+    }
+
+
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
     const onResize = () => updateOffset();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [updateOffset]);
+    
+    window.addEventListener('resize', onResize)
+    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('touchmove', handleMove)
+    window.addEventListener('blob-override', handleOverride)
+    window.addEventListener('blob-scale', handleScale)
+    window.addEventListener('blob-release', handleRelease)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('touchmove', handleMove)
+      window.removeEventListener('blob-override', handleOverride)
+      window.removeEventListener('blob-scale', handleScale)
+      window.removeEventListener('blob-release', handleRelease)
+    };
+  }, [updateOffset, handleMove]);
 
   if (isTouch) return null
 
@@ -71,8 +117,6 @@ export default function BlobCursor({
       ref={containerRef}
       className="blob-container"
       style={{ zIndex }}
-      onMouseMove={handleMove}
-      onTouchMove={handleMove}
     >
       {useFilter && (
         <svg style={{ position: 'absolute', width: 0, height: 0 }}>
