@@ -52,14 +52,14 @@ export default function SocialBar() {
         const cy = rect.top + rect.height / 2
         setIsHovered(true)
         window.dispatchEvent(new CustomEvent('blob-override', { detail: { x: cx, y: cy } }))
-        window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: rect.height, radius: "24px" } }))
+        window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: rect.height, radius: "24px", width: 45 } }))
     }
 
     
 
     const handleLeave = () => {
         setIsHovered(false)
-        window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: 45, radius: "36px" } })) // altura original
+        window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: 45, radius: "36px", width: 45 } })) 
         window.dispatchEvent(new CustomEvent('blob-release'))
     }
 
@@ -70,12 +70,13 @@ export default function SocialBar() {
           onMouseLeave={handleLeave}
           style={{
             position: 'fixed',
-            left: '2rem',
-            top: '80%',
+            left: '1rem',
+            top: '82%',
             transform: 'translateY(-50%)',
             zIndex: 900,
             display: 'flex',
             flexDirection: 'column',
+            gap: '0.5rem',
             padding: '0.75rem',
             alignItems: 'center',
           }}>
@@ -99,8 +100,6 @@ export default function SocialBar() {
               transition: 'color 0.2s ease',
               textDecoration: 'none',
               zIndex: 900,
-              paddingTop: "4px",
-              paddingBottom: "4px",
             }}
           >
             {s.icon}

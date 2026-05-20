@@ -1,5 +1,6 @@
 ---
 import BlobCursor from "@/components/externalComponents/BlobCursor";
+import Header from "@/components/Header/Header";
 import Loader from "@/components/Loader";
 import Redes from "@/components/Redes/Redes";
 ---
@@ -13,29 +14,31 @@ import Redes from "@/components/Redes/Redes";
 		<title>Astro Basics</title>
 	</head>
 	<body class="min-h-full min-w-full">
-    <div id="blob-wrapper">
-	  	<BlobCursor
-	  	  blobType="circle"
-	  	  fillColor="#e0bef8"
-	  	  trailCount={1}
-	  	  sizes={[45]}
-	  	  innerSizes={[0,0,0]}
-	  	  innerColor="rgba(224, 190, 248, 0.3)"
-	  	  opacities={[1]}
-	  	  shadowColor="rgba(224, 190, 248, 0.9)"
-	  	  shadowBlur={40}
-	  	  shadowOffsetX={0}
-	      shadowOffsetY={0}
-	  	  filterStdDeviation={0}
-	  	  useFilter={false}
-	  	  fastDuration={0.1}
-        slowDuration={0.4}
-	  	  zIndex={900}
-	  	  client:load
-	  	/>
-	  </div>
-		<Loader client:load />
-    <Redes client:load />
+		<div class="hidden md:block">
+    		<div id="blob-wrapper">
+				<BlobCursor
+				  blobType="circle"
+				  fillColor="#e0bef8"
+				  trailCount={1}
+				  sizes={[45]}
+				  innerSizes={[0,0,0]}
+				  innerColor="rgba(224, 190, 248, 0.3)"
+				  opacities={[1]}
+				  shadowColor="rgba(224, 190, 248, 0.9)"
+				  shadowBlur={40}
+				  shadowOffsetX={0}
+				  shadowOffsetY={0}
+				  filterStdDeviation={0}
+				  useFilter={false}
+				  fastDuration={0.1}
+				  slowDuration={0.4}
+				  zIndex={900}
+				  client:load
+				/>
+			</div>
+		</div>
+		<!-- <Loader client:load /> -->
+    	<Redes client:load />
 		<slot />
 	</body>
 </html>

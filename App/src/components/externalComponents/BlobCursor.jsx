@@ -61,17 +61,19 @@ export default function BlobCursor({
 
   useEffect(() => {
     const handleOverride = (e) => {
-    isOverriding.current = true
-    const { left, top } = updateOffset()
-    blobsRef.current.forEach((el) => {
-      if (!el) return
-      gsap.to(el, {
-        x: e.detail.x - left,
-        y: e.detail.y - top,
-        duration: 0.4,
-        ease: 'elastic.out(1, 0.5)',
+      console.log('override recibido:', e.detail)
+      isOverriding.current = true
+      const { left, top } = updateOffset()
+      console.log('offset:', left, top)
+      blobsRef.current.forEach((el) => {
+        if (!el) return
+        gsap.to(el, {
+          x: e.detail.x - left,
+          y: e.detail.y - top,
+          duration: 0.4,
+          ease: 'elastic.out(1, 0.5)',
+        })
       })
-    })
   }
 
     const handleRelease = () => {
@@ -81,8 +83,10 @@ export default function BlobCursor({
     const handleScale = (e) => {
       blobsRef.current.forEach((el) => {
         if (!el) return
+        console.log('Scaling blob to:', e.detail)
         gsap.to(el, {
           height: e.detail.height,
+          width: e.detail.width,
           borderRadius: e.detail.radius,
           duration: 0.4,
           ease: 'power3.out',

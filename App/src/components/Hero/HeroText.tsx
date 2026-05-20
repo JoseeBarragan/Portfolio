@@ -42,7 +42,7 @@ export default function HeroText() {
         marginBottom: "0.75rem",
         fontWeight: 300,
       }}>
-        HELLO, I'M
+        Hello, I'm
       </p>
       <h1 style={{
         ...baseStyle,
