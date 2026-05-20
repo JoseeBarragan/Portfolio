@@ -39,7 +39,7 @@ export default function VSTerminal({ children }: { children: React.ReactNode }) 
             zIndex: 900,
             opacity: isMobile ? 0.25 : 1,
             scale: isMobile ? 0.6 : 1,
-            display: isMobile ? 'flex' : 'inline-block',
+            display: isMobile ? 'flex' : 'block',
             alignItems: isMobile ? 'center' : 'auto',
             justifyContent: isMobile ? 'center' : 'auto',
             pointerEvents: isMobile ? 'none' : 'auto',

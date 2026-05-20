@@ -66,13 +66,14 @@ export default function HeroText() {
   return (
     <div
       ref={containerRef}
-      className="relative z-900 flex items-center justify-center w-full md:w-auto pointer-events-none px-6 md:px-0"
+      className="relative z-900 flex items-center justify-center w-full md:w-auto px-6 md:px-0"
     >
       {/* Capa base */}
       {content(false)}
 
       {/* Capa revelada */}
       <motion.div
+        id="blob-shadow"
         style={{
           position: "absolute",
           inset: 0,
@@ -81,7 +82,7 @@ export default function HeroText() {
           justifyContent: "center",
           maskImage: mask,
           WebkitMaskImage: mask,
-          pointerEvents: "none",
+          zIndex: 900
         }}
       >
         {content(true)}

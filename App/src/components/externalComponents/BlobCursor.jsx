@@ -120,6 +120,7 @@ export default function BlobCursor({
     <div
       ref={containerRef}
       className="blob-container"
+      id='blob-container'
       style={{ zIndex }}
     >
       {useFilter && (

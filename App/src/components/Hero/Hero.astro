@@ -5,54 +5,130 @@ import VSTerminal from "./HeroTerminal"
 import Terminal from "./Terminal.astro"
 ---
 
+<section id="hero-section" class="relative w-full" style="height: 200vh;">
 
-<div id="container" class="w-full h-full">
-	<LightRays
-		raysOrigin="top-center"
-		raysColor="#63328e"
-		raysSpeed={1}
-		lightSpread={3}
-		rayLength={60}
-		pulsating={false}
-		fadeDistance={1}
-		saturation={2}
-		followMouse={false}
-		mouseInfluence={0.1}
-		noiseAmount={0}
-		distortion={0}
-	  	client:load
-	  />
-	<main class="w-full h-full relative">
-		<div class="w-full h-full relative flex items-center justify-center">
-  
-		  <!-- Terminal mobile: absolute detrás -->
-		  <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none md:hidden">
-		    <VSTerminal client:load>
-		      <Terminal />
-		    </VSTerminal>
-		  </div>
-	  
-		  <!-- Layout principal -->
-		  <div class="relative flex flex-col md:flex-row items-center justify-center w-full md:w-auto"
-		       style="gap: clamp(1rem, 4vw, 4rem); padding: clamp(1rem, 3vw, 2rem)">
+  <!-- LightRays: NO sticky, fondo estático arriba -->
+  <div class="sticky top-0 h-screen overflow-hidden pointer-events-none" style="z-index: 0; margin-bottom: -100vh;">
+    <LightRays
+      raysOrigin="top-center"
+      raysColor="#63328e"
+      raysSpeed={1}
+      lightSpread={3}
+      rayLength={60}
+      pulsating={false}
+      fadeDistance={1}
+      saturation={2}
+      followMouse={false}
+      mouseInfluence={0.1}
+      noiseAmount={0}
+      distortion={0}
+      client:load
+    />
+  </div>
 
-		    <HeroText client:load/>
-	  
-		    <div class="hidden md:block shrink-0">
-		      <VSTerminal client:load>
-		        <Terminal />
-		      </VSTerminal>
-		    </div>
-		
-		  </div>
-		</div>
-	</main>
-</div>
+  <!-- Contenido sticky -->
+  <div
+    class="top-0 h-screen w-full flex flex-col items-center justify-center"
+    style="z-index: 10;"
+  >
+    <!-- Texto: NO sticky, sale con scroll -->
+    <div
+      id="hero-text"
+      class="absolute"
+      style="left: clamp(2rem, 8vw, 12rem);"
+    >
+      <HeroText client:load />
+    </div>
+
+    <!-- Terminal wrapper: sticky, centrada horizontalmente al final -->
+    <div
+      id="hero-terminal-wrapper"
+      class="hidden md:block shrink-0 sticky"
+      style="perspective: 1500px; perspective-origin: center center; position: absolute; right: clamp(2rem, 8vw, 10rem);"
+    >
+      <div
+        id="hero-card"
+        style="transform-style: preserve-3d; position: relative;"
+      >
+        <VSTerminal client:load>
+          <Terminal />
+        </VSTerminal>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 <script>
-  const wrapper = document.getElementById('blob-wrapper')
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    wrapper?.remove()
-  }
-</script>
+  import gsap from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+ 
+  gsap.registerPlugin(ScrollTrigger)
+ 
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroText    = document.getElementById('hero-text')
+    const heroCard    = document.getElementById('hero-card')
+    const heroWrapper = document.getElementById('hero-terminal-wrapper')
+ 
+    if (!heroText || !heroCard || !heroWrapper) return
+ 
+    ScrollTrigger.refresh()
+ 
+    const mm = gsap.matchMedia()
+ 
+    mm.add('(min-width: 1024px)', () => {
+      // 1. Distancia horizontal exacta al borde izquierdo
+      const wrapperRect = heroWrapper.getBoundingClientRect()
+      const leftX = -(wrapperRect.left - 100)
+ 
+      // 2. CÁLCULO PARA EL EJE Y TENIENDO EN CUENTA LOS 250vh
+      // Cuando la tarjeta pasa a medir 70vh, ocupa la gran mayoría de la pantalla.
+      // Su posición inicial (gracias al flex del padre) está centrada en el eje Y.
+      // Al scrollear los 250vh, queremos empujarla hacia abajo para que el borde inferior 
+      // roce el fondo del viewport. Un valor ideal para este push en distancias largas es entre el 20% y 25% del alto total.
+      const viewportHeight = window.innerHeight
+      const downY = viewportHeight * 1.0 // Subimos al 22% para obligarla a bajar mucho más
 
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#hero-section',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+ 
+      // 0% → 20%: El texto sale rápido
+      tl.to(heroText, {
+        x: '-150%',
+        opacity: 0,
+        ease: 'power3.in',
+        duration: 0.2,
+      }, 0)
+ 
+      // 20% → 100%: Movimiento diagonal fluido + escalado
+      tl.to(heroWrapper,
+        { 
+          x: leftX, 
+          y: downY, // <-- Ahora con el 22% compensa los 250vh de recorrido visual
+          ease: 'power1.inOut', 
+          duration: 0.8
+        },
+        0.2
+      )
+ 
+      tl.to(heroCard,
+        { rotateY: 180, ease: 'none', duration: 0.8 },
+        0.2
+      )
+ 
+      tl.to(heroCard,
+        { height: '70vh', ease: 'power1.inOut', duration: 0.8 },
+        0.2
+      )
+ 
+      return () => {}
+    })
+  })
+</script>
