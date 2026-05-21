@@ -1,8 +1,10 @@
 ---
 import LightRays from "../externalComponents/LightRays"
-import HeroText from "../Hero/HeroText"
+import HeroText from "../Hero/HeroText.astro"
 import VSTerminal from "./HeroTerminal"
 import Terminal from "./Terminal.astro"
+import TerminalBack from "./TerminalBack"
+import ScrollFloat from '../externalComponents/ScrollFloat';
 ---
 
 <section id="hero-section" class="relative w-full" style="height: 200vh;">
@@ -34,28 +36,72 @@ import Terminal from "./Terminal.astro"
     <!-- Texto: NO sticky, sale con scroll -->
     <div
       id="hero-text"
-      class="absolute"
+      class="lg:absolute text-center"
       style="left: clamp(2rem, 8vw, 12rem);"
     >
-      <HeroText client:load />
+      <HeroText />
     </div>
 
     <!-- Terminal wrapper: sticky, centrada horizontalmente al final -->
     <div
       id="hero-terminal-wrapper"
-      class="hidden md:block shrink-0 sticky"
+      class="hidden lg:block shrink-0 sticky"
       style="perspective: 1500px; perspective-origin: center center; position: absolute; right: clamp(2rem, 8vw, 10rem);"
     >
-      <div
-        id="hero-card"
-        style="transform-style: preserve-3d; position: relative;"
-      >
-        <VSTerminal client:load>
-          <Terminal />
-        </VSTerminal>
+      <div id="hero-card" style="transform-style: preserve-3d; position: relative;">
+        <VSTerminal client:load><Terminal /></VSTerminal>
+        <TerminalBack client:load/>
       </div>
     </div>
-  </div>
+
+   <div 
+      id="right-about-text" 
+      class="absolute z-900 pointer-events-auto"
+      style="right: clamp(2rem, 8vw, 10rem); top: 75%; transform: translateY(-50%);"
+    >
+      <div class="relative">
+        
+        <div class="flex flex-col items-start text-left transition-opacity duration-500">
+          <h2 class="font-mono tracking-widest text-[#bda0f8] text-4xl lg:text-6xl leading-tight mb-4 select-none">
+            ABOUT ME<br/>
+          </h2>
+          <div class="flex font-extrabold flex-col gap-3 text-[#e5dfe6] text-sm md:text-base xl:text-2xl font-sans max-w-md xl:max-w-xl leading-relaxed select-none">
+            <p>
+              I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.
+            </p>
+            <p>
+              Beyond specific frameworks like TypeScript, React, and NestJS, I am deeply driven by robust system design, scalable infrastructure, and performance optimization. 
+            </p>
+            <p>
+              I don't just build features; I architect solutions. I am constantly learning, bridging the gap between academic theory and real-world engineering to deliver cleaner, more efficient systems.
+            </p>
+          </div>
+        </div>
+
+        <div 
+          id="about-mask-layer"
+          class="absolute inset-0 flex flex-col z-900 items-start text-left duration-300 "
+          style="-webkit-mask-image: radial-gradient(circle 45px at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%); mask-image: radial-gradient(circle 45px at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%);"
+          aria-hidden="true"
+        >
+          <h2 class="font-mono tracking-widest text-[#251f01] text-4xl lg:text-6xl leading-tight mb-4 select-none drop-shadow-[0_0_12px_rgba(189,160,248,0.6)]">
+            ABOUT ME<br/>
+          </h2>
+          <div class="flex font-extrabold flex-col gap-3 text-black text-sm md:text-base xl:text-2xl font-sans max-w-md xl:max-w-xl leading-relaxed select-none">
+            <p>
+              I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.
+            </p>
+            <p>
+              Beyond specific frameworks like TypeScript, React, and NestJS, I am deeply driven by robust system design, scalable infrastructure, and performance optimization. 
+            </p>
+            <p>
+              I don't just build features; I architect solutions. I am constantly learning, bridging the gap between academic theory and real-world engineering to deliver cleaner, more efficient systems.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 </section>
 
@@ -66,28 +112,55 @@ import Terminal from "./Terminal.astro"
   gsap.registerPlugin(ScrollTrigger)
  
   document.addEventListener('DOMContentLoaded', () => {
-    const heroText    = document.getElementById('hero-text')
     const heroCard    = document.getElementById('hero-card')
     const heroWrapper = document.getElementById('hero-terminal-wrapper')
+    const rightAboutText = document.getElementById('right-about-text')
+    // Rastreador del mouse para el efecto máscara en el About
+    const aboutWrapper = document.getElementById('right-about-text')
+    const maskLayer    = document.getElementById('about-mask-layer')
+    const container = document.getElementById('hero-text-container');
+    const blobLayer = document.getElementById('blob-layer');
+
+    if (container && blobLayer) {
+      // Escuchamos el evento global (como el que usaste en tu código de arriba)
+      window.addEventListener('blob-move', ((e: CustomEvent) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.detail.x - rect.left;
+        const y = e.detail.y - rect.top;
+
+        // Actualizamos las variables CSS en la capa del blob
+        blobLayer.style.setProperty('--x', `${x}px`);
+        blobLayer.style.setProperty('--y', `${y}px`);
+      }) as EventListener);
+    }
+
+    if (aboutWrapper && maskLayer) {
+
+      window.addEventListener('mousemove', (e) => {
+          window.requestAnimationFrame(() => {
+            const rect = aboutWrapper.getBoundingClientRect()
+            const x = e.clientX - rect.left
+            const y = e.clientY - rect.top
+            
+            maskLayer.style.setProperty('--x', `${x}px`)
+            maskLayer.style.setProperty('--y', `${y}px`)
+            
+        })
+      })
+    }
  
-    if (!heroText || !heroCard || !heroWrapper) return
+    if (!container || !heroCard || !heroWrapper) return
  
     ScrollTrigger.refresh()
  
     const mm = gsap.matchMedia()
  
     mm.add('(min-width: 1024px)', () => {
-      // 1. Distancia horizontal exacta al borde izquierdo
       const wrapperRect = heroWrapper.getBoundingClientRect()
-      const leftX = -(wrapperRect.left - 100)
+      const leftX = -(wrapperRect.left - 125)
  
-      // 2. CÁLCULO PARA EL EJE Y TENIENDO EN CUENTA LOS 250vh
-      // Cuando la tarjeta pasa a medir 70vh, ocupa la gran mayoría de la pantalla.
-      // Su posición inicial (gracias al flex del padre) está centrada en el eje Y.
-      // Al scrollear los 250vh, queremos empujarla hacia abajo para que el borde inferior 
-      // roce el fondo del viewport. Un valor ideal para este push en distancias largas es entre el 20% y 25% del alto total.
       const viewportHeight = window.innerHeight
-      const downY = viewportHeight * 1.0 // Subimos al 22% para obligarla a bajar mucho más
+      const downY = viewportHeight * 1.0 
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -96,26 +169,43 @@ import Terminal from "./Terminal.astro"
           end: 'bottom bottom',
           scrub: 1,
           invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (self.progress === 1) {
+              window.dispatchEvent(new CustomEvent('start-terminal-typing'))
+            }
+          }
         },
       })
  
-      // 0% → 20%: El texto sale rápido
-      tl.to(heroText, {
+      tl.to(container, {
         x: '-150%',
         opacity: 0,
         ease: 'power3.in',
-        duration: 0.2,
+        duration: 0.6,
       }, 0)
  
-      // 20% → 100%: Movimiento diagonal fluido + escalado
       tl.to(heroWrapper,
         { 
           x: leftX, 
-          y: downY, // <-- Ahora con el 22% compensa los 250vh de recorrido visual
+          y: downY, 
           ease: 'power1.inOut', 
           duration: 0.8
         },
         0.2
+      )
+
+      tl.fromTo(rightAboutText, 
+        { 
+          opacity: 0, 
+          y: 30 
+        }, 
+        { 
+          opacity: 1, 
+          y: 0,
+          ease: 'power3.out', 
+          duration: 0.6 
+        }, 
+        0.6
       )
  
       tl.to(heroCard,
@@ -124,8 +214,8 @@ import Terminal from "./Terminal.astro"
       )
  
       tl.to(heroCard,
-        { height: '70vh', ease: 'power1.inOut', duration: 0.8 },
-        0.2
+        { height: '70vh', ease: 'power1.inOut', duration: 0.4 },
+        0.6
       )
  
       return () => {}

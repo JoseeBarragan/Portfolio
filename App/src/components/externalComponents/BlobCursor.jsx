@@ -61,10 +61,8 @@ export default function BlobCursor({
 
   useEffect(() => {
     const handleOverride = (e) => {
-      console.log('override recibido:', e.detail)
       isOverriding.current = true
       const { left, top } = updateOffset()
-      console.log('offset:', left, top)
       blobsRef.current.forEach((el) => {
         if (!el) return
         gsap.to(el, {
