@@ -45,8 +45,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
     <!-- Terminal wrapper: sticky, centrada horizontalmente al final -->
     <div
       id="hero-terminal-wrapper"
-      class="hidden lg:block shrink-0 sticky"
-      style="perspective: 1500px; perspective-origin: center center; position: absolute; right: clamp(2rem, 8vw, 10rem);"
+      class="hidden lg:block shrink-0 absolute lg:right-10 xl:right-25 perspective-[1500px] perspective-origin-[center_center]"
     >
       <div id="hero-card" style="transform-style: preserve-3d; position: relative;">
         <VSTerminal client:load><Terminal /></VSTerminal>
@@ -56,16 +55,15 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
 
    <div 
       id="right-about-text" 
-      class="absolute z-900 pointer-events-auto"
-      style="right: clamp(2rem, 8vw, 10rem); top: 75%; transform: translateY(-50%);"
+      class="z-900 pointer-events-auto absolute lg:right-[1%] xl:right-[5%] lg:top-[75%] md:top-[65%] lg:-translate-y-1/2 flex items-center justify-center lg:block w-full lg:w-auto px-6 lg:px-0"
     >
-      <div class="relative">
+      <div class="relative ">
         
-        <div class="flex flex-col items-start text-left transition-opacity duration-500">
-          <h2 class="font-mono tracking-widest text-[#bda0f8] text-4xl lg:text-6xl leading-tight mb-4 select-none">
+        <div class="flex flex-col items-center text-center lg:items-start lg:text-left transition-opacity duration-500">
+          <h2 class="font-mono tracking-widest text-[#bda0f8] text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 select-none">
             ABOUT ME<br/>
           </h2>
-          <div class="flex font-extrabold flex-col gap-3 text-[#e5dfe6] text-sm md:text-base xl:text-2xl font-sans max-w-md xl:max-w-xl leading-relaxed select-none">
+          <div class="flex font-extrabold flex-col gap-3 text-[#e5dfe6] text-sm md:text-base lg:text-lg xl:text-2xl font-sans max-w-md xl:max-w-xl mx-auto lg:mx-0 leading-relaxed select-none">
             <p>
               I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.
             </p>
@@ -80,14 +78,14 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
 
         <div 
           id="about-mask-layer"
-          class="absolute inset-0 flex flex-col z-900 items-start text-left duration-300 "
-          style="-webkit-mask-image: radial-gradient(circle 45px at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%); mask-image: radial-gradient(circle 45px at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%);"
+          class="absolute inset-0 flex flex-col z-900 items-center text-center lg:items-start lg:text-left duration-300"
+          style="-webkit-mask-image: radial-gradient(circle 47px at var(--x, -999px) var(--y, -999px), black 0%, transparent 100%); mask-image: radial-gradient(circle 47px at var(--x, -999px) var(--y, -999px), black 0%, transparent 100%);"
           aria-hidden="true"
         >
-          <h2 class="font-mono tracking-widest text-[#251f01] text-4xl lg:text-6xl leading-tight mb-4 select-none drop-shadow-[0_0_12px_rgba(189,160,248,0.6)]">
+          <h2 class="font-mono tracking-widest text-[#251f01] text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 select-none drop-shadow-[0_0_12px_rgba(189,160,248,0.6)]">
             ABOUT ME<br/>
           </h2>
-          <div class="flex font-extrabold flex-col gap-3 text-black text-sm md:text-base xl:text-2xl font-sans max-w-md xl:max-w-xl leading-relaxed select-none">
+          <div class="flex font-extrabold flex-col gap-3 text-[#251f01] text-sm md:text-base lg:text-lg xl:text-2xl font-sans max-w-md xl:max-w-xl mx-auto lg:mx-0 leading-relaxed select-none">
             <p>
               I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.
             </p>
@@ -114,8 +112,6 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
   document.addEventListener('DOMContentLoaded', () => {
     const heroCard    = document.getElementById('hero-card')
     const heroWrapper = document.getElementById('hero-terminal-wrapper')
-    const rightAboutText = document.getElementById('right-about-text')
-    // Rastreador del mouse para el efecto máscara en el About
     const aboutWrapper = document.getElementById('right-about-text')
     const maskLayer    = document.getElementById('about-mask-layer')
     const container = document.getElementById('hero-text-container');
@@ -157,7 +153,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
  
     mm.add('(min-width: 1024px)', () => {
       const wrapperRect = heroWrapper.getBoundingClientRect()
-      const leftX = -(wrapperRect.left - 125)
+      const leftX = -(wrapperRect.left - 100)
  
       const viewportHeight = window.innerHeight
       const downY = viewportHeight * 1.0 
@@ -177,13 +173,6 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
         },
       })
  
-      tl.to(container, {
-        x: '-150%',
-        opacity: 0,
-        ease: 'power3.in',
-        duration: 0.6,
-      }, 0)
- 
       tl.to(heroWrapper,
         { 
           x: leftX, 
@@ -192,20 +181,6 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
           duration: 0.8
         },
         0.2
-      )
-
-      tl.fromTo(rightAboutText, 
-        { 
-          opacity: 0, 
-          y: 30 
-        }, 
-        { 
-          opacity: 1, 
-          y: 0,
-          ease: 'power3.out', 
-          duration: 0.6 
-        }, 
-        0.6
       )
  
       tl.to(heroCard,

@@ -29,7 +29,7 @@ export default function Header() {
     }
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-900 flex items-center px-10 py-6 max-w-full w-full">
+        <header className="fixed top-0 left-0 right-0 z-900 flex items-center md:px-5 lg:px-10 py-6 max-w-full w-full">
   
             {/* Logo - izquierda */}
             {/* Nota: cambié logoRef de HTMLParagraphElement a HTMLDivElement ya que lo aplicas a un <div> */}
@@ -57,7 +57,7 @@ export default function Header() {
             </a>
 
             {/* Nav - derecha */}
-            <div className="flex gap-14 ml-auto justify-between">
+            <div className="flex xl:gap-14 ml-auto justify-between">
                 <a href="#about">
                     <div className="group px-3 py-2 cursor-pointer" ref={aboutRef} onMouseEnter={() => handleEnter(aboutRef)} onMouseLeave={handleLeave}>
                         <p className="text-white group-hover:text-black font-medium">ABOUT</p>

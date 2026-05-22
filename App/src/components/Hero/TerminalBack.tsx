@@ -94,7 +94,7 @@ export default function TerminalBack() {
 
             {showOutput1 && (
               <div className="mt-3 pl-4 border-l-2 border-[#331c4e] flex flex-col gap-2">
-                <div className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#bda0f8] to-[#efebd8] tracking-wide mb-1">
+                <div className="text-lg font-bold text-transparent bg-clip-text bg-linear-to-r from-[#bda0f8] to-[#efebd8] tracking-wide mb-1">
                   JOSÉ BARRAGÁN
                 </div>
                 <div className="flex gap-4">
@@ -120,8 +120,10 @@ export default function TerminalBack() {
             </div>
 
             {showOutput2 && (
-              <div className="mt-3 pl-4 border-l-2 border-[#331c4e] text-[#efebd8]/80 text-justify max-w-[420px] font-sans text-xs leading-relaxed">
-                Apasionado por diseñar soluciones web eficientes, escalables y con interfaces minimalistas de alto impacto. Especializado en optimizar el rendimiento de punta a punta, desde arquitecturas limpias en el backend hasta transiciones fluidas en el cliente.
+              <div className="mt-3 pl-4 border-l-2 border-[#331c4e] text-[#efebd8]/80 text-justify max-w-105 font-sans text-xs leading-relaxed">
+                <p>I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.</p>
+  <p>Beyond specific frameworks like TypeScript, React, and NestJS, I am deeply driven by robust system design, scalable infrastructure, and performance optimization.</p>
+  <p>I don't just build features; I architect solutions. I am constantly learning, bridging the gap between academic theory and real-world engineering to deliver cleaner, more efficient systems.</p>
               </div>
             )}
           </div>

@@ -14,7 +14,7 @@ import Redes from "@/components/Redes/Redes";
 		<title>Astro Basics</title>
 	</head>
 	<body class="min-h-full min-w-full">
-		<div class="hidden md:block">
+		<div class="hidden lg:block">
 			<BlobCursor
 			  blobType="circle"
 			  fillColor="#e0bef8"
@@ -35,8 +35,8 @@ import Redes from "@/components/Redes/Redes";
 			  client:load
 			/>
 		</div>
-		<!-- <Loader client:load /> -->
-    	<Redes client:load />
+<!-- 		<Loader client:load /> -->    	
+		<Redes client:load />
 		<slot />
 	</body>
 </html>

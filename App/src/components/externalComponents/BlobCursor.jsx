@@ -28,6 +28,7 @@ export default function BlobCursor({
 }) {
   const containerRef = useRef(null);
   const blobsRef = useRef([]);
+  const originalSizes = useRef([])
   const [isTouch, setIsTouch] = useState(true)
   const updateOffset = useCallback(() => {
     if (!containerRef.current) return { left: 0, top: 0 };
@@ -60,6 +61,11 @@ export default function BlobCursor({
   );
 
   useEffect(() => {
+    originalSizes.current = blobsRef.current.map((el, i) => ({
+      width: sizes[i],
+      height: sizes[i],
+      borderRadius: blobType === 'circle' ? '50%' : '0%',
+    }))
     const handleOverride = (e) => {
       isOverriding.current = true
       const { left, top } = updateOffset()
@@ -92,6 +98,40 @@ export default function BlobCursor({
       })
     }
 
+    const handleMouseLeave = (e) => {
+      if (!containerRef.current) return
+      const { left, top } = updateOffset()
+      const x = e.clientX - left
+      const y = e.clientY - top
+      blobsRef.current.forEach(el => {
+        if (!el) return
+        gsap.killTweensOf(el)
+        gsap.set(el, { x, y })
+      })
+
+      containerRef.current.style.transformOrigin = `${e.clientX}px ${e.clientY}px`
+      gsap.to(containerRef.current, { scale: 0, duration: 0.2, ease: 'power2.in' })
+    }
+
+    const handleMouseEnter = (e) => {
+      if (!containerRef.current) return
+      containerRef.current.style.transformOrigin = `${e.clientX}px ${e.clientY}px`
+      gsap.to(containerRef.current, { scale: 1, duration: 0.2, ease: 'power2.out' })
+
+      if (!isOverriding.current) {
+        blobsRef.current.forEach((el, i) => {
+          if (!el) return
+          gsap.to(el, {
+            width: sizes[i],
+            height: sizes[i],
+            borderRadius: blobType === 'circle' ? '50%' : '0%',
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+        })
+      }
+    }
+
 
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
     const onResize = () => updateOffset();
@@ -102,6 +142,8 @@ export default function BlobCursor({
     window.addEventListener('blob-override', handleOverride)
     window.addEventListener('blob-scale', handleScale)
     window.addEventListener('blob-release', handleRelease)
+    document.documentElement.addEventListener('mouseleave', handleMouseLeave)
+    document.documentElement.addEventListener('mouseenter', handleMouseEnter)
     return () => {
       window.removeEventListener('resize', onResize)
       window.removeEventListener('mousemove', handleMove)
@@ -109,6 +151,8 @@ export default function BlobCursor({
       window.removeEventListener('blob-override', handleOverride)
       window.removeEventListener('blob-scale', handleScale)
       window.removeEventListener('blob-release', handleRelease)
+      document.documentElement.removeEventListener('mouseleave', handleMouseLeave)
+      document.documentElement.removeEventListener('mouseenter', handleMouseEnter)
     };
   }, [updateOffset, handleMove]);
 
