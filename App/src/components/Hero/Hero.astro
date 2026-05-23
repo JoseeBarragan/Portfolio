@@ -114,15 +114,15 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
     const heroWrapper = document.getElementById('hero-terminal-wrapper')
     const aboutWrapper = document.getElementById('right-about-text')
     const maskLayer    = document.getElementById('about-mask-layer')
-    const container = document.getElementById('hero-text-container');
+    const container = document.getElementById('hero-text-wrapper');
     const blobLayer = document.getElementById('blob-layer');
 
     if (container && blobLayer) {
       // Escuchamos el evento global (como el que usaste en tu código de arriba)
       window.addEventListener('blob-move', ((e: CustomEvent) => {
         const rect = container.getBoundingClientRect();
-        const x = e.detail.x - rect.left;
-        const y = e.detail.y - rect.top;
+        const x = e.detail.x - rect.left
+        const y = e.detail.y - rect.top
 
         // Actualizamos las variables CSS en la capa del blob
         blobLayer.style.setProperty('--x', `${x}px`);
@@ -172,7 +172,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
           }
         },
       })
- 
+
       tl.to(heroWrapper,
         { 
           x: leftX, 
@@ -182,7 +182,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
         },
         0.2
       )
- 
+      
       tl.to(heroCard,
         { rotateY: 180, ease: 'none', duration: 0.8 },
         0.2
