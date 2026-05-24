@@ -1,7 +1,6 @@
 ---
 ---
 <div class="terminal">
-  <!-- Tab bar -->
   <div class="tab-bar">
     <div class="dots">
       <span class="dot red" />
@@ -9,57 +8,44 @@
       <span class="dot green" />
     </div>
     <div class="tab">
-      <span class="dot-blue">●</span>
+      <span class="tab-dot">●</span>
       developer.ts
     </div>
   </div>
 
-  <!-- Code -->
   <div class="code-area">
     <div class="line-numbers">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {Array.from({ length: 10 }).map((_, i) => (
         <div>{i + 1}</div>
       ))}
     </div>
     <div class="code-lines">
-      <div class="line">
-        <span class="ts-keyword">const</span> <span class="ts-var">developer</span> <span class="ts-op">=</span> <span class="ts-brace">{`{`}</span>
-      </div>
-      <div class="line indent">
-        <span class="ts-key">name</span><span class="ts-op">:</span> <span class="ts-string">"José Barragán"</span><span class="ts-op">,</span>
-      </div>
-      <div class="line indent">
-        <span class="ts-key">role</span><span class="ts-op">:</span> <span class="ts-fn">infer</span><span class="ts-paren">(</span><span class="ts-string">"Fullstack Developer"</span><span class="ts-paren">)</span><span class="ts-op">,</span>
-      </div>
-      <div class="line indent">
-        <span class="ts-key">stack</span><span class="ts-op">:</span> <span class="ts-brace">[</span><span class="ts-string">"Node"</span><span class="ts-op">,</span> <span class="ts-string">"NestJS"</span><span class="ts-op">,</span> <span class="ts-string">"React"</span><span class="ts-op">,</span> <span class="ts-string">"TypeScript"</span><span class="ts-op">,</span> <span class="ts-string">"Postgres"</span><span class="ts-brace">]</span><span class="ts-op">,</span>
-      </div>
-      <div class="line indent">
-        <span class="ts-key">bugs</span><span class="ts-op">:</span> <span class="ts-fn">deny</span><span class="ts-paren">(</span><span class="ts-string">"all of them"</span><span class="ts-paren">)</span><span class="ts-op">,</span>
-      </div>
-      <div class="line">
-        <span class="ts-brace">{`}`}</span> <span class="ts-keyword">as</span> <span class="ts-type">Developer</span><span class="ts-op">;</span>
-      </div>
+      <div class="line"><span class="cm">// Welcome to my workspace</span></div>
+      <div class="line"><span class="kw">import</span> <span class="br">{`{`}</span> <span class="ty">Developer</span> <span class="br">{`}`}</span> <span class="kw">from</span> <span class="str">'./universe'</span>;</div>
+      <div class="line">&nbsp;</div>
+      <div class="line"><span class="kw">const</span> <span class="fn">Portfolio</span> <span class="op">=</span> <span class="pr">()</span> <span class="op">=&gt;</span> <span class="br">{`{`}</span></div>
+      <div class="line indent"><span class="kw">return</span> <span class="pr">(</span></div>
+      <div class="line indent">&nbsp;&nbsp;<span class="op">&lt;</span><span class="ty">Developer</span></div>
+      <div class="line indent">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ke">name</span><span class="op">=</span><span class="str">"José Barragán"</span></div>
+      <div class="line indent">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ke">role</span><span class="op">=</span><span class="str">"Fullstack Developer"</span></div>
+      <div class="line indent">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ke">stack</span><span class="op">=</span><span class="str">"NestJS · React · TypeScript"</span></div>
+      <div class="line indent">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ke">db</span><span class="op">=</span><span class="str">"PostgreSQL · Prisma"</span></div>
+      <div class="line indent">&nbsp;&nbsp;<span class="op">/&gt;</span></div>
+      <div class="line indent"><span class="pr">)</span>;</div>
+      <div class="line"><span class="br">{`}`}</span>;</div>
     </div>
-  </div>
-
-  <!-- Status bar -->
-  <div class="status-bar">
-    <span>TypeScript</span>
-    <span>UTF-8</span>
   </div>
 </div>
 
 <style>
   .terminal {
-    width: clamp(400px, 40vw, 500px);
-    height: 100%;
+    width: clamp(340px, 40vw, 520px);
     background: #1e1e2e;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.8rem;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px #313244;
+    font-size: 13px;
+    border: 1px solid #313244;
   }
   .tab-bar {
     background: #181825;
@@ -68,14 +54,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    height: 36px;
+    height: 38px;
   }
+  .fn { color: #f7c201; }
   .dots { display: flex; gap: 6px; }
-  .dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    display: block;
-  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: block; }
   .red    { background: #ff5f57; }
   .yellow { background: #febc2e; }
   .green  { background: #28c840; }
@@ -85,47 +68,55 @@
     border: 1px solid #313244;
     border-bottom: none;
     border-radius: 4px 4px 0 0;
-    padding: 4px 16px;
+    padding: 4px 14px;
     color: #cdd6f4;
-    font-size: 0.75rem;
+    font-size: 12px;
     display: flex;
     align-items: center;
     gap: 6px;
   }
-  .dot-blue { color: #89b4fa; }
-  .code-area {
-    display: flex;
-    padding: 1.2rem 0;
-  }
+  .tab-dot { color: #89b4fa; font-size: 10px; }
+  .code-area { display: flex; padding: 1rem 0; }
   .line-numbers {
-    min-width: 40px;
+    min-width: 36px;
     text-align: right;
-    padding-right: 1rem;
+    padding: 0 0.75rem;
     color: #45475a;
     user-select: none;
-    line-height: 1.8;
+    line-height: 1.85;
+    font-size: 12px;
   }
-  .code-lines { line-height: 1.8; padding-right: 1.2rem; }
-  .line { display: block; }
+  .code-lines { line-height: 1.85; padding-right: 1.2rem; flex: 1; }
+  .line { display: block; white-space: nowrap; }
   .indent { padding-left: 1.5rem; }
-  .status-bar {
-    background: #89b4fa;
-    padding: 2px 12px;
+  .buttons-area {
+    padding: 0.75rem 1rem 1rem;
     display: flex;
-    justify-content: space-between;
-    font-size: 0.7rem;
-    color: #1e1e2e;
-    font-weight: 600;
+    gap: 0.75rem;
   }
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid;
+  }
+  .btn-primary  { background: transparent; border-color: #f38ba8; color: #f38ba8; }
+  .btn-secondary { background: transparent; border-color: #45475a; color: #cdd6f4; }
 
-  /* Syntax highlighting — is:global para q no se scoped */
-  :global(.ts-keyword) { color: #cba6f7; }
-  :global(.ts-var)     { color: #89dceb; }
-  :global(.ts-key)     { color: #89b4fa; }
-  :global(.ts-type)    { color: #f9e2af; }
-  :global(.ts-string)  { color: #a6e3a1; }
-  :global(.ts-fn)      { color: #89dceb; }
-  :global(.ts-op)      { color: #cdd6f4; }
-  :global(.ts-brace)   { color: #cba6f7; }
-  :global(.ts-paren)   { color: #fab387; }
+  /* Syntax highlighting */
+  :global(.cm)  { color: #6c7086; font-style: italic; }
+  :global(.kw)  { color: #cba6f7; }
+  :global(.va)  { color: #89dceb; }
+  :global(.ke)  { color: #89b4fa; }
+  :global(.ty)  { color: #f9e2af; }
+  :global(.str) { color: #a6e3a1; }
+  :global(.op)  { color: #cdd6f4; }
+  :global(.br)  { color: #cba6f7; }
+  :global(.pr)  { color: #fab387; }
 </style>

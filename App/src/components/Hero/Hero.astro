@@ -45,7 +45,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
     <!-- Terminal wrapper: sticky, centrada horizontalmente al final -->
     <div
       id="hero-terminal-wrapper"
-      class="hidden lg:block shrink-0 absolute lg:right-10 xl:right-25 perspective-[1500px] perspective-origin-[center_center]"
+      class="hidden lg:block shrink-0 absolute lg:right-10 xl:right-30 perspective-[1500px] perspective-origin-[center_center]"
     >
       <div id="hero-card" style="transform-style: preserve-3d; position: relative;">
         <VSTerminal client:load><Terminal /></VSTerminal>
@@ -118,13 +118,11 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
     const blobLayer = document.getElementById('blob-layer');
 
     if (container && blobLayer) {
-      // Escuchamos el evento global (como el que usaste en tu código de arriba)
       window.addEventListener('blob-move', ((e: CustomEvent) => {
         const rect = container.getBoundingClientRect();
         const x = e.detail.x - rect.left
         const y = e.detail.y - rect.top
 
-        // Actualizamos las variables CSS en la capa del blob
         blobLayer.style.setProperty('--x', `${x}px`);
         blobLayer.style.setProperty('--y', `${y}px`);
       }) as EventListener);
@@ -153,7 +151,7 @@ import ScrollFloat from '../externalComponents/ScrollFloat';
  
     mm.add('(min-width: 1024px)', () => {
       const wrapperRect = heroWrapper.getBoundingClientRect()
-      const leftX = -(wrapperRect.left - 100)
+      const leftX = -(wrapperRect.left - 125)
  
       const viewportHeight = window.innerHeight
       const downY = viewportHeight * 1.0 

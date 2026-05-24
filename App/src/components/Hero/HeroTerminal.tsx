@@ -28,7 +28,9 @@ export default function VSTerminal({ children }: { children: React.ReactNode }) 
             backfaceVisibility: 'hidden',
         }
     }>
-      <div className='backface-hidden'>
+      <div
+       className='backface-hidden'
+      >
         {children}
       </div>
   </div>
