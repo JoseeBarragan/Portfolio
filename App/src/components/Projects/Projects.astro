@@ -1,0 +1,29 @@
+---
+import DotField from "../externalComponents/DotField";
+
+---
+<section class="w-full h-full min-h-full">
+  <div class="sticky top-0 h-screen overflow-hidden bg-linear-to-b from-transparent from-0% via-purple-950/70 via-20% to-[#0d0010] to-100% pointer-events-none" style="z-index: 2; margin-bottom: -100vh;">
+    
+    <!-- fade desde el color de la sección anterior -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 300px; background: linear-gradient(to bottom, transparent, transparent); z-index: 1; pointer-events: none;" />
+    
+    <div style="width: 100vw; height: 100vh; position: relative;">
+      <DotField 
+        dotRadius={2}
+        dotSpacing={15}
+        cursorRadius={400}
+        cursorForce={0.02}
+        bulgeOnly
+        bulgeStrength={41}
+        glowRadius={50}
+        sparkle
+        waveAmplitude={0}
+        gradientFrom="rgba(168, 85, 247, 0.35)"
+        gradientTo="rgba(180, 151, 207, 0.25)"
+        glowColor="#120F17"
+        client:idle 
+      />
+    </div>
+  </div>
+</section>
