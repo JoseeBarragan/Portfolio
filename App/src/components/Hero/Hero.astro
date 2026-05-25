@@ -163,7 +163,7 @@ import TerminalBack from "./TerminalBack"
           scrub: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            if (self.progress === 1) {
+            if (self.progress >= 0.8) {
               window.dispatchEvent(new CustomEvent('start-terminal-typing'))
             }
           }
@@ -175,7 +175,7 @@ import TerminalBack from "./TerminalBack"
           x: leftX, 
           y: downY, 
           ease: 'power1.inOut', 
-          duration: 0.8
+          duration: 0.6
         },
         0.2
       )

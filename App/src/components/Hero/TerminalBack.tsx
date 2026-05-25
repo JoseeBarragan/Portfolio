@@ -21,17 +21,15 @@ export default function TerminalBack() {
   }, [])
 
   useEffect(() => {
-    // Si startTyping es true pero ya hay texto en los comandos, significa que ya corrió.
-    // No volvemos a ejecutar los intervalos.
     if (!startTyping || command1.length > 0) return
 
-    // Secuencia 1: Escribir "whoami"
     let txt1 = ' whoami'
     let i = 0
     const timer1 = setInterval(() => {
       if (i < txt1.length) {
-        setCommand1((prev) => prev + txt1.charAt(i))
+        const char = txt1.charAt(i)
         i++
+        setCommand1((prev) => prev + char)  
       } else {
         clearInterval(timer1)
         setTimeout(() => {
@@ -41,19 +39,17 @@ export default function TerminalBack() {
       }
     }, 90)
 
-    // Secuencia 2: Escribir "cat about.txt"
     const triggerSecondCommand = () => {
       let txt2 = ' cat about.txt'
       let j = 0
       const timer2 = setInterval(() => {
         if (j < txt2.length) {
-          setCommand2((prev) => prev + txt2.charAt(j))
+          const char = txt2.charAt(j)
           j++
+          setCommand2((prev) => prev + char)  // ✅ idem
         } else {
           clearInterval(timer2)
-          setTimeout(() => {
-            setShowOutput2(true)
-          }, 350)
+          setTimeout(() => setShowOutput2(true), 350)
         }
       }, 80)
     }
