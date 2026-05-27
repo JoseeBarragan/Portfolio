@@ -3,44 +3,53 @@ import BorderGlow from "../externalComponents/BorderGlow";
 import DotField from "../externalComponents/DotField";
 import GymImage from "../../assets/try1.png"
 ---
-<section class="w-full h-full min-h-full z-900">
-  <div class="sticky top-0 h-screen overflow-hidden bg-linear-to-b from-transparent from-0% via-purple-950/70 via-20% to-[#0d0010] to-100%" style="z-index: 800; margin-bottom: -100vh;">
-    <div style="width: 100vw; height: 100vh; position: relative;">
-      <div class="absolute top-0 left-0 w-full h-full pointer-events-auto" style="z-index: 800;">
-        <DotField 
-          dotRadius={2}
-          dotSpacing={15}
-          cursorRadius={400}
-          cursorForce={0.02}
-          bulgeOnly
-          bulgeStrength={41}
-          glowRadius={50}
-          sparkle
-          waveAmplitude={0}
-          gradientFrom="rgba(168, 85, 247, 0.35)"
-          gradientTo="rgba(180, 151, 207, 0.25)"
-          glowColor="#120F17"
-          client:visible 
-        />
-      </div>
+<section 
+  id="work" 
+  class="relative w-full min-h-screen py-24 px-6 md:px-10 overflow-hidden flex flex-col items-center justify-center"
+>
+  
+  <div 
+    class="absolute inset-0 w-full h-full pointer-events-none bg-[#0d0010] z-0"
+    style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%); mask-image: linear-gradient(to bottom, transparent 0%, black 20%);"
+  >
+    
+    <div class="absolute inset-0 bg-linear-to-b from-transparent via-purple-950/70 to-[#0d0010] z-10"></div>
+    
+    <div class="absolute inset-0 z-20">
+      <DotField 
+        dotRadius={2}
+        dotSpacing={15}
+        cursorRadius={400}
+        cursorForce={0.02}
+        bulgeOnly
+        bulgeStrength={41}
+        glowRadius={50}
+        sparkle
+        waveAmplitude={0}
+        gradientFrom="rgba(168, 85, 247, 0.35)"
+        gradientTo="rgba(180, 151, 207, 0.25)"
+        glowColor="#120F17"
+        client:visible 
+      />
     </div>
   </div>
-  <div class="relative flex pointer-events-none items-center z-900 justify-evenly h-full gap-8">
+
+  <div class="relative flex pointer-events-none items-center justify-evenly w-full min-h-[calc(100vh-12rem)] gap-8 z-900">
+    
     <div class="relative pointer-events-auto" style="z-index: 1000;">
         <BorderGlow
-          edgeSensitivity={1}
+          edgeSensitivity={100}
           glowColor="40 80 80"
           backgroundColor="#120F17"
           borderRadius={16}
           glowRadius={40}
           glowIntensity={1.5}
           coneSpread={25}
-          animated
           className="z-1000"
           colors={['#c084fc', '#f472b6', '#38bdf8']}
           client:visible
         >
-          <div class="flex flex-col h-full min-h-80 max-h-130 w-full max-w-150 p-6 text-zinc-100 justify-between">
+          <div class="flex flex-col h-full min-h-80 max-h-fit w-full max-w-150 p-6 text-zinc-100 justify-between">
             <img
               src=""
               alt="Preview del proyecto"
@@ -64,29 +73,32 @@ import GymImage from "../../assets/try1.png"
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Node.js</span>
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Mercado Pago</span>
+                <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
               </div>
               <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
-                <a href="#" class="text-xs text-zinc-400 hover:text-white transition-colors">GitHub</a>
+                <a href="#" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-95">
+                  GitHub
+                </a>
               </div>
             </div>
           </div>
         </BorderGlow>
       </div>
+
       <div class="relative pointer-events-auto" style="z-index: 1000;">
         <BorderGlow
-          edgeSensitivity={1}
+          edgeSensitivity={100}
           glowColor="40 80 80"
           backgroundColor="#120F17"
           borderRadius={16}
           glowRadius={40}
           glowIntensity={1.5}
           coneSpread={25}
-          animated
           className="z-1000"
           colors={['#c084fc', '#f472b6', '#38bdf8']}
           client:visible
         >
-          <div class="flex flex-col h-full min-h-80 max-h-130 w-full max-w-150 p-6 text-zinc-100 justify-between">
+          <div class="flex flex-col h-full min-h-80 max-h-fit w-full max-w-150 p-6 text-zinc-100 justify-between">
             <img
               src={GymImage.src}
               alt="Preview Gym Management System"
@@ -111,13 +123,18 @@ import GymImage from "../../assets/try1.png"
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Docker</span>
                 <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Stripe</span>
+                <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Redis</span>
+                <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
               </div>
               <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
-                <a href="#" class="text-xs text-zinc-400 hover:text-white transition-colors">GitHub</a>
+                <a href="#" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200 shadow-sm hover:shadow-md active:scale-95">
+                  GitHub
+                </a>
               </div>
             </div>
           </div>
         </BorderGlow>
       </div>
-    </div>
+
+  </div>
 </section>
