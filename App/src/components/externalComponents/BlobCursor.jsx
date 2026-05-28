@@ -113,6 +113,21 @@ export default function BlobCursor({
       gsap.to(containerRef.current, { scale: 0, duration: 0.2, ease: 'power2.in' })
     }
 
+    const handleMouseEnterExclusiveElement = (e) => {
+        if (!containerRef.current) return
+        const { left, top } = updateOffset()
+        const x = e.clientX - left
+        const y = e.clientY - top
+        blobsRef.current.forEach(el => {
+          if (!el) return
+          gsap.killTweensOf(el)
+          gsap.set(el, { x, y })
+        })
+
+        containerRef.current.style.transformOrigin = `${e.clientX}px ${e.clientY}px`
+        gsap.to(containerRef.current, { scale: 0, duration: 0.2, ease: 'power2.in' })
+    }
+
     const handleMouseEnter = (e) => {
       if (!containerRef.current) return
       containerRef.current.style.transformOrigin = `${e.clientX}px ${e.clientY}px`
@@ -142,6 +157,8 @@ export default function BlobCursor({
     window.addEventListener('blob-override', handleOverride)
     window.addEventListener('blob-scale', handleScale)
     window.addEventListener('blob-release', handleRelease)
+    window.addEventListener("blob-disapear", handleMouseEnterExclusiveElement)
+    window.addEventListener("blob-appear", handleMouseEnter)
     document.documentElement.addEventListener('mouseleave', handleMouseLeave)
     document.documentElement.addEventListener('mouseenter', handleMouseEnter)
     return () => {

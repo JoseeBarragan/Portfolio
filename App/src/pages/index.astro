@@ -4,10 +4,12 @@ import Layout from '../layouts/Layout.astro';
 import "../assets/style.css"
 import Header from '@/components/Header/Header';
 import Projects from '@/components/Projects/Projects.astro';
+import TechStackAstroComponent from '@/components/TechStack/TechStack.astro';
 ---
 
 <Layout>
 	<Header client:load/>
 	<Hero />
 	<Projects />
+	<TechStackAstroComponent/>
 </Layout>

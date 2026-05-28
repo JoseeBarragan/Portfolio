@@ -1,0 +1,22 @@
+---
+import TechSphere from "@/components/TechStack/TechSphere"
+---
+<section id="techStack" class="w-full z-1000 bg-neutral-800 h-screen">
+	<TechSphere client:visible/>
+</section>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const techStack = document.getElementById("techStack");
+    
+    if (techStack) {
+      techStack.addEventListener("mouseenter", () => 
+        window.dispatchEvent(new CustomEvent("blob-disapear"))
+      );
+      techStack.addEventListener("mouseleave", () => 
+        window.dispatchEvent(new CustomEvent("blob-appear"))
+      );
+    }
+  });
+</script>
