@@ -35,7 +35,7 @@ h1 {
 
 .delayed-position {
   /* Ahora la transición funcionará */ 
-  transition: --x 85ms ease-out, --y 85ms ease-out;
+  transition: --x 86ms ease-out, --y 86ms ease-out;
 }
 
 @custom-variant dark (&:is(.dark *));

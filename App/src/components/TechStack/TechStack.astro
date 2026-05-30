@@ -7,19 +7,3 @@ import { TechGrid } from "@/components/TechStack/TechGrid"
 >
   <TechGrid/>
 </section>
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const techStack = document.getElementById("techStack");
-    
-    if (techStack) {
-      techStack.addEventListener("mouseenter", () => 
-        window.dispatchEvent(new CustomEvent("blob-disapear"))
-      );
-      techStack.addEventListener("mouseleave", () => 
-        window.dispatchEvent(new CustomEvent("blob-appear"))
-      );
-    }
-  });
-</script>
