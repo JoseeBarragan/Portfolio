@@ -21,6 +21,23 @@ h1 {
   letter-spacing: 0.1em;
 }
 
+@property --x {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: -999px;
+}
+
+@property --y {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: -999px;
+}
+
+.delayed-position {
+  /* Ahora la transición funcionará */ 
+  transition: --x 85ms ease-out, --y 85ms ease-out;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

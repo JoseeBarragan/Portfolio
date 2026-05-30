@@ -58,7 +58,7 @@ import TerminalBack from "./TerminalBack"
     >
       <div class="relative ">
         
-        <div class="flex flex-col items-center text-center lg:items-start lg:text-left transition-opacity duration-500">
+        <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
           <h2 class="font-mono tracking-widest text-[#bda0f8] text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 select-none">
             ABOUT ME<br/>
           </h2>
@@ -77,8 +77,8 @@ import TerminalBack from "./TerminalBack"
 
         <div 
           id="about-mask-layer"
-          class="absolute inset-0 flex flex-col z-900 items-center text-center lg:items-start lg:text-left duration-300"
-          style="-webkit-mask-image: radial-gradient(circle 47px at var(--x, -999px) var(--y, -999px), black 0%, transparent 100%); mask-image: radial-gradient(circle 47px at var(--x, -999px) var(--y, -999px), black 0%, transparent 100%);"
+          class="absolute inset-0 flex flex-col z-900 items-center text-center lg:items-start lg:text-left delayed-position"
+          style="-webkit-mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%); mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%);"
           aria-hidden="true"
         >
           <h2 class="font-mono tracking-widest text-[#251f01] text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 select-none drop-shadow-[0_0_12px_rgba(189,160,248,0.6)]">
@@ -116,32 +116,27 @@ import TerminalBack from "./TerminalBack"
     const container = document.getElementById('hero-text-wrapper');
     const blobLayer = document.getElementById('blob-layer');
 
-    if (container && blobLayer) {
-      window.addEventListener('blob-move', ((e: CustomEvent) => {
-        const rect = container.getBoundingClientRect();
-        const x = e.detail.x - rect.left
-        const y = e.detail.y - rect.top
+    window.addEventListener('blob-move', ((e: CustomEvent) => {
+      // Usamos requestAnimationFrame para agrupar las actualizaciones visuales
+      window.requestAnimationFrame(() => {
+        const { x: mouseX, y: mouseY } = e.detail;
 
-        blobLayer.style.setProperty('--x', `${x}px`);
-        blobLayer.style.setProperty('--y', `${y}px`);
-      }) as EventListener);
-    }
+        // 1. Actualizar Máscara del Hero
+        if (container && blobLayer) {
+          const rect = container.getBoundingClientRect();
+          blobLayer.style.setProperty('--x', `${mouseX - rect.left}px`);
+          blobLayer.style.setProperty('--y', `${mouseY - rect.top}px`);
+        }
 
-    if (aboutWrapper && maskLayer) {
-
-      window.addEventListener('mousemove', (e) => {
-          window.requestAnimationFrame(() => {
-            const rect = aboutWrapper.getBoundingClientRect()
-            const x = e.clientX - rect.left
-            const y = e.clientY - rect.top
-            
-            maskLayer.style.setProperty('--x', `${x}px`)
-            maskLayer.style.setProperty('--y', `${y}px`)
-            
-        })
-      })
-    }
- 
+        // 2. Actualizar Máscara del About
+        if (aboutWrapper && maskLayer) {
+          const rect = aboutWrapper.getBoundingClientRect();
+          maskLayer.style.setProperty('--x', `${mouseX - rect.left}px`);
+          maskLayer.style.setProperty('--y', `${mouseY - rect.top}px`);
+        }
+      });
+    }) as EventListener); 
+    
     if (!container || !heroCard || !heroWrapper) return
  
     ScrollTrigger.refresh()

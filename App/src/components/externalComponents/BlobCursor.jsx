@@ -78,7 +78,7 @@ export default function BlobCursor({
           ease: 'elastic.out(1, 0.5)',
         })
       })
-  }
+    }
 
     const handleRelease = () => {
       isOverriding.current = false
@@ -114,18 +114,8 @@ export default function BlobCursor({
     }
 
     const handleMouseEnterExclusiveElement = (e) => {
-        if (!containerRef.current) return
-        const { left, top } = updateOffset()
-        const x = e.clientX - left
-        const y = e.clientY - top
-        blobsRef.current.forEach(el => {
-          if (!el) return
-          gsap.killTweensOf(el)
-          gsap.set(el, { x, y })
-        })
-
-        containerRef.current.style.transformOrigin = `${e.clientX}px ${e.clientY}px`
-        gsap.to(containerRef.current, { scale: 0, duration: 0.2, ease: 'power2.in' })
+      if (!containerRef.current) return
+      gsap.to(containerRef.current, { scale: 0, duration: 0.2, ease: 'power2.in' })
     }
 
     const handleMouseEnter = (e) => {
@@ -150,7 +140,7 @@ export default function BlobCursor({
 
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
     const onResize = () => updateOffset();
-    
+
     window.addEventListener('resize', onResize)
     window.addEventListener('mousemove', handleMove)
     window.addEventListener('touchmove', handleMove)
