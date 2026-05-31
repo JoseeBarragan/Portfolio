@@ -1,9 +1,19 @@
 ---
-import { TechGrid } from "@/components/TechStack/TechGrid"
+import TechGrid from "@/components/TechStack/TechGrid.astro"
+import Orb from "@/components/externalComponents/Orb"
 ---
 
-<section id="techStack" class="w-full z-1000 h-screen"
+<section id="techStack" class="w-full relative  h-screen"
   style="background: linear-gradient(to bottom, #0f0111 0%, #0f0111 35%);"
 >
+  <div class="w-full h-full absolute inset-0 z-900">
+    <Orb
+      hue={312}
+      hoverIntensity={0}
+      rotateOnHover={false}
+      forceHoverState={false}
+      client:visible
+    />
+  </div>
   <TechGrid/>
 </section>
