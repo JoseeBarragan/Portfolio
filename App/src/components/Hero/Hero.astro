@@ -51,12 +51,12 @@ import TerminalBack from "./TerminalBack"
         <TerminalBack client:load/>
       </div>
     </div>
-
+    <div id="about"></div>
    <div 
       id="right-about-text" 
       class="z-900 pointer-events-auto absolute lg:right-[1%] xl:right-[5%] lg:top-[75%] md:top-[65%] lg:-translate-y-1/2 flex items-center justify-center lg:block w-full lg:w-auto px-6 lg:px-0"
     >
-      <div class="relative ">
+      <div class="relative"> 
         
         <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
           <h2 class="font-mono tracking-widest text-[#bda0f8] text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 select-none">
@@ -99,7 +99,6 @@ import TerminalBack from "./TerminalBack"
 
       </div>
     </div>
-
 </section>
 
 <script>
@@ -119,6 +118,18 @@ import TerminalBack from "./TerminalBack"
     const contributionsMask    = document.getElementById('contributions-mask-layer')
     const container = document.getElementById('hero-text-wrapper');
     const blobLayer = document.getElementById('blob-layer');
+
+    window.addEventListener('scroll', () => console.log(window.scrollY))
+    document.querySelectorAll('a[href="#about"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const el = document.getElementById('about')
+        if (!el) return
+        const y = el.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({ top: y + 500, behavior: 'smooth' })
+      })
+    })
+
 
     window.addEventListener('blob-move', ((e: CustomEvent) => {
       // Usamos requestAnimationFrame para agrupar las actualizaciones visuales

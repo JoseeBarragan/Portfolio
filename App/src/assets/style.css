@@ -3,6 +3,9 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+html {
+  scroll-behavior: smooth;
+}
 
 html, body {
     margin: 0;
