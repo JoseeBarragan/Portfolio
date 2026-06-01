@@ -59,8 +59,8 @@ export default function SocialBar() {
           ref={containerRef}
           onMouseEnter={handleContainerEnter}
           onMouseLeave={handleLeave}
+          className='hidden md:fixed'
           style={{
-            position: 'fixed',
             left: '1rem',
             top: '82%',
             transform: 'translateY(-50%)',
