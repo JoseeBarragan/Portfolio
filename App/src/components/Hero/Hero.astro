@@ -110,9 +110,13 @@ import TerminalBack from "./TerminalBack"
  
   document.addEventListener('DOMContentLoaded', () => {
     const heroCard    = document.getElementById('hero-card')
+    const techstackWrapper = document.getElementById('techstack-label-wrapper')
+    const techstackMask    = document.getElementById('techstack-mask-layer')
     const heroWrapper = document.getElementById('hero-terminal-wrapper')
     const aboutWrapper = document.getElementById('right-about-text')
     const maskLayer    = document.getElementById('about-mask-layer')
+    const contributionsWrapper = document.getElementById('contributions-label-wrapper')
+    const contributionsMask    = document.getElementById('contributions-mask-layer')
     const container = document.getElementById('hero-text-wrapper');
     const blobLayer = document.getElementById('blob-layer');
 
@@ -133,6 +137,18 @@ import TerminalBack from "./TerminalBack"
           const rect = aboutWrapper.getBoundingClientRect();
           maskLayer.style.setProperty('--x', `${mouseX - rect.left}px`);
           maskLayer.style.setProperty('--y', `${mouseY - rect.top}px`);
+        }
+
+        if (contributionsWrapper && contributionsMask) {
+          const rect = contributionsWrapper.getBoundingClientRect()
+          contributionsMask.style.setProperty('--x', `${mouseX - rect.left}px`)
+          contributionsMask.style.setProperty('--y', `${mouseY - rect.top}px`)
+        }
+
+        if (techstackWrapper && techstackMask) {
+          const rect = techstackWrapper.getBoundingClientRect()
+          techstackMask.style.setProperty('--x', `${mouseX - rect.left}px`)
+          techstackMask.style.setProperty('--y', `${mouseY - rect.top}px`)
         }
       });
     }) as EventListener); 

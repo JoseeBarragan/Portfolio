@@ -27,7 +27,19 @@ const technologies = [
 ];
 ---
 
-<h2 class="text-center text-4xl font-bold mb-16 text-white">TECH STACK</h2>
+<div id="techstack-label-wrapper" class="relative flex z-900 justify-center mb-16">
+  <!-- Base layer -->
+  <h2 class="text-4xl font-bold text-white">TECH STACK</h2>
+
+  <!-- Mask layer -->
+  <div
+    id="techstack-mask-layer"
+    class="absolute inset-0 flex delayed-position justify-center pointer-events-none"
+    style="-webkit-mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%); mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%);"
+  >
+    <h2 class="text-4xl font-bold text-black">TECH STACK</h2>
+  </div>
+</div>
 <div class="flex flex-wrap justify-center z-1000 gap-4 max-w-4xl mx-auto">
   {technologies.map((tech) => (
     <div class="w-20 h-20 sm:w-24 sm:h-24 flex flex-col z-900 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-[#b697ee] shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-all duration-150 ease-in-out hover:bg-white/10 hover:scale-110 cursor-pointer">
