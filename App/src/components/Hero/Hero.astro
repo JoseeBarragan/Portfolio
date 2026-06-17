@@ -23,7 +23,7 @@ import TerminalBack from "./TerminalBack"
       mouseInfluence={0.1}
       noiseAmount={0}
       distortion={0}
-      client:load
+      client:idle
     />
   </div>
 
@@ -47,8 +47,8 @@ import TerminalBack from "./TerminalBack"
       class="hidden lg:block shrink-0 absolute lg:right-10 xl:right-30 perspective-[1500px] perspective-origin-[center_center]"
     >
       <div id="hero-card" style="transform-style: preserve-3d; position: relative;">
-        <VSTerminal client:load><Terminal /></VSTerminal>
-        <TerminalBack client:load/>
+        <VSTerminal client:visible><Terminal /></VSTerminal>
+        <TerminalBack client:visible/>
       </div>
     </div>
     <div id="about"></div>

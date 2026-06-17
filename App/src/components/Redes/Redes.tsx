@@ -76,6 +76,7 @@ export default function SocialBar() {
           <a
             key={s.label}
             href={s.href}
+            aria-label={s.label}
             target={s.href.startsWith('mailto') ? '_self' : '_blank'}
             rel="noreferrer"
             ref={el => {refs.current[i] = el}}

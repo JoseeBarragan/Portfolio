@@ -9,6 +9,7 @@ import Redes from "@/components/Redes/Redes";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="José Barragán — Fullstack Developer especializado en NestJS, React y TypeScript. Mirá mis proyectos y contactame." />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
@@ -34,8 +35,8 @@ import Redes from "@/components/Redes/Redes";
 			  client:load
 			/>
 		</div>
-		<!-- <Loader client:load /> 	 -->
-		<Redes client:load />
+		<Loader client:load /> 	
+		<Redes client:idle />
 		<slot />
 	</body>
 </html>
