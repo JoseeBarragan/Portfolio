@@ -129,40 +129,109 @@ import TerminalBack from "./TerminalBack"
       })
     })
 
+    let lastMouseX = -999;
+    let lastMouseY = -999;
 
     window.addEventListener('blob-move', ((e: CustomEvent) => {
       // Usamos requestAnimationFrame para agrupar las actualizaciones visuales
+      
       window.requestAnimationFrame(() => {
-        const { x: mouseX, y: mouseY } = e.detail;
-
+        const { x, y } = e.detail;
+        lastMouseX = x;
+        lastMouseY = y;
+        
         // 1. Actualizar Máscara del Hero
         if (container && blobLayer) {
           const rect = container.getBoundingClientRect();
-          blobLayer.style.setProperty('--x', `${mouseX - rect.left}px`);
-          blobLayer.style.setProperty('--y', `${mouseY - rect.top}px`);
+          blobLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
+          blobLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
         }
 
         // 2. Actualizar Máscara del About
         if (aboutWrapper && maskLayer) {
           const rect = aboutWrapper.getBoundingClientRect();
-          maskLayer.style.setProperty('--x', `${mouseX - rect.left}px`);
-          maskLayer.style.setProperty('--y', `${mouseY - rect.top}px`);
+          maskLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
+          maskLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
         }
 
         if (contributionsWrapper && contributionsMask) {
           const rect = contributionsWrapper.getBoundingClientRect()
-          contributionsMask.style.setProperty('--x', `${mouseX - rect.left}px`)
-          contributionsMask.style.setProperty('--y', `${mouseY - rect.top}px`)
+          contributionsMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
+          contributionsMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
         }
 
         if (techstackWrapper && techstackMask) {
           const rect = techstackWrapper.getBoundingClientRect()
-          techstackMask.style.setProperty('--x', `${mouseX - rect.left}px`)
-          techstackMask.style.setProperty('--y', `${mouseY - rect.top}px`)
+          techstackMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
+          techstackMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
         }
       });
     }) as EventListener); 
     
+    const blobLeader = document.querySelector('#blob-container .blob-main .blob:first-child') as HTMLElement;
+
+    gsap.ticker.add(() => {
+
+      if (!blobLeader) return;
+
+      const blobRect = blobLeader.getBoundingClientRect();
+      const blobCenterX = blobRect.left + blobRect.width / 2;
+      const blobCenterY = blobRect.top + blobRect.height / 2;
+
+      if (maskLayer) {
+        const rect = maskLayer.getBoundingClientRect();
+        maskLayer.style.setProperty('--x', `${blobCenterX - rect.left}px`);
+        maskLayer.style.setProperty('--y', `${blobCenterY - rect.top}px`);
+      }
+    
+      if (blobLayer) {
+        const rect = blobLayer.getBoundingClientRect();
+        blobLayer.style.setProperty('--x', `${blobCenterX - rect.left}px`);
+        blobLayer.style.setProperty('--y', `${blobCenterY - rect.top}px`);
+      }
+
+      if (contributionsMask) {
+        const rect = contributionsMask.getBoundingClientRect()
+        contributionsMask.style.setProperty('--x', `${blobCenterX - rect.left}px`)
+        contributionsMask.style.setProperty('--y', `${blobCenterY - rect.top}px`)
+      }
+      
+      if (techstackMask) {
+        const rect = techstackMask.getBoundingClientRect()
+        techstackMask.style.setProperty('--x', `${blobCenterX - rect.left}px`)
+        techstackMask.style.setProperty('--y', `${blobCenterY - rect.top}px`)
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      window.requestAnimationFrame(() => {
+
+        if (container && blobLayer) {
+          const rect = container.getBoundingClientRect();
+          blobLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
+          blobLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
+        }
+
+        if (aboutWrapper && maskLayer) {
+          const rect = maskLayer.getBoundingClientRect();
+          maskLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
+          maskLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
+        }
+
+        if (contributionsWrapper && contributionsMask) {
+          const rect = contributionsWrapper.getBoundingClientRect()
+          contributionsMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
+          contributionsMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
+        }
+
+        if (techstackWrapper && techstackMask) {
+          const rect = techstackWrapper.getBoundingClientRect()
+          techstackMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
+          techstackMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
+        }
+      });
+    }, { passive: true });
+
     if (!container || !heroCard || !heroWrapper) return
  
     ScrollTrigger.refresh()
