@@ -131,12 +131,21 @@ import TerminalBack from "./TerminalBack"
 
     let lastMouseX = -999;
     let lastMouseY = -999;
+
+    let blobActive = false;
+
+    window.addEventListener('blob-move', ((e: CustomEvent) => {
+      blobActive = true;
+      const { x, y } = e.detail;
+      lastMouseX = x;
+      lastMouseY = y;
+    }) as EventListener);
     
     const blobLeader = document.querySelector('#blob-container .blob-main .blob:first-child') as HTMLElement;
 
     gsap.ticker.add(() => {
 
-      if (!blobLeader) return;
+      if (!blobLeader || !blobActive) return;
 
       const blobRect = blobLeader.getBoundingClientRect();
       const blobCenterX = blobRect.left + blobRect.width / 2;
