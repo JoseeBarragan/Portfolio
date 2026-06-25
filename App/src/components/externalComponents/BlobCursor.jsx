@@ -87,7 +87,7 @@ export default function BlobCursor({
     const handleScale = (e) => {
       blobsRef.current.forEach((el) => {
         if (!el) return
-        console.log('Scaling blob to:', e.detail)
+
         gsap.to(el, {
           height: e.detail.height,
           width: e.detail.width,

@@ -13,6 +13,12 @@ export default function Loader() {
   useEffect(() => {
     const progress = { value: 0 }
 
+    document.body.style.overflowY = 'hidden'
+    
+    const timer = setTimeout(() => {
+      document.body.style.overflowY = 'unset'
+    }, 4000)
+
     gsap.to(progress, {
       value: 100,
       duration: 4,
@@ -40,6 +46,11 @@ export default function Loader() {
         })
       }
     })
+   
+    return () => {
+      clearTimeout(timer)
+      document.body.style.overflowY = 'unset'
+    }
   }, [])
 
     return (
@@ -52,7 +63,7 @@ export default function Loader() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#e4dfe6',
+          background: '#e4dfe6'
         }}
       >
         {/* CurvedLoop centrado detrás */}
