@@ -77,7 +77,7 @@ import TerminalBack from "./TerminalBack"
 
         <div 
           id="about-mask-layer"
-          class="absolute inset-0 flex flex-col z-900 items-center text-center lg:items-start lg:text-left delayed-position"
+          class="absolute inset-0 hidden lg:flex lg:flex-col z-900 items-center text-center lg:items-start lg:text-left delayed-position"
           style="-webkit-mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%); mask-image: radial-gradient(circle 25px at var(--x, -999px) var(--y, -999px), black 90%, transparent 10%);"
           aria-hidden="true"
         >
@@ -131,42 +131,6 @@ import TerminalBack from "./TerminalBack"
 
     let lastMouseX = -999;
     let lastMouseY = -999;
-
-    window.addEventListener('blob-move', ((e: CustomEvent) => {
-      // Usamos requestAnimationFrame para agrupar las actualizaciones visuales
-      
-      window.requestAnimationFrame(() => {
-        const { x, y } = e.detail;
-        lastMouseX = x;
-        lastMouseY = y;
-        
-        // 1. Actualizar Máscara del Hero
-        if (container && blobLayer) {
-          const rect = container.getBoundingClientRect();
-          blobLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
-          blobLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
-        }
-
-        // 2. Actualizar Máscara del About
-        if (aboutWrapper && maskLayer) {
-          const rect = aboutWrapper.getBoundingClientRect();
-          maskLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
-          maskLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
-        }
-
-        if (contributionsWrapper && contributionsMask) {
-          const rect = contributionsWrapper.getBoundingClientRect()
-          contributionsMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
-          contributionsMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
-        }
-
-        if (techstackWrapper && techstackMask) {
-          const rect = techstackWrapper.getBoundingClientRect()
-          techstackMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
-          techstackMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
-        }
-      });
-    }) as EventListener); 
     
     const blobLeader = document.querySelector('#blob-container .blob-main .blob:first-child') as HTMLElement;
 
@@ -178,28 +142,49 @@ import TerminalBack from "./TerminalBack"
       const blobCenterX = blobRect.left + blobRect.width / 2;
       const blobCenterY = blobRect.top + blobRect.height / 2;
 
+
       if (maskLayer) {
         const rect = maskLayer.getBoundingClientRect();
-        maskLayer.style.setProperty('--x', `${blobCenterX - rect.left}px`);
-        maskLayer.style.setProperty('--y', `${blobCenterY - rect.top}px`);
-      }
-    
+        gsap.to(maskLayer, {
+          '--x': `${blobCenterX - rect.left}px`,
+          '--y': `${blobCenterY - rect.top}px`,
+          duration: 0.008,
+          ease: 'power3.out',
+          overwrite: true,
+        })
+      } 
+
       if (blobLayer) {
         const rect = blobLayer.getBoundingClientRect();
-        blobLayer.style.setProperty('--x', `${blobCenterX - rect.left}px`);
-        blobLayer.style.setProperty('--y', `${blobCenterY - rect.top}px`);
+        gsap.to(blobLayer, {
+          '--x': `${blobCenterX - rect.left}px`,
+          '--y': `${blobCenterY - rect.top}px`,
+          duration: 0.008,
+          ease: 'power3.out',
+          overwrite: true,
+        })
       }
 
-      if (contributionsMask) {
+      if(contributionsMask) {
         const rect = contributionsMask.getBoundingClientRect()
-        contributionsMask.style.setProperty('--x', `${blobCenterX - rect.left}px`)
-        contributionsMask.style.setProperty('--y', `${blobCenterY - rect.top}px`)
+        gsap.to(contributionsMask, {
+          '--x': `${blobCenterX - rect.left}px`,
+          '--y': `${blobCenterY - rect.top}px`,
+          duration: 0.008,
+          ease: 'power3.out',
+          overwrite: true,
+        })
       }
-      
-      if (techstackMask) {
+
+      if(techstackMask) {
         const rect = techstackMask.getBoundingClientRect()
-        techstackMask.style.setProperty('--x', `${blobCenterX - rect.left}px`)
-        techstackMask.style.setProperty('--y', `${blobCenterY - rect.top}px`)
+        gsap.to(techstackMask, {
+          '--x': `${blobCenterX - rect.left}px`,
+          '--y': `${blobCenterY - rect.top}px`,
+          duration: 0.008,
+          ease: 'power3.out',
+          overwrite: true,
+        })
       }
     });
 

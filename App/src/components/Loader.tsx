@@ -112,8 +112,8 @@ export default function Loader() {
               }}>
                 {showPercent && (
                   <>
-                    <span style={{ color: '#888' }}>LOADING</span>
-                    <span>{percent}%</span>
+                    <span className="text-[#888] select-none">LOADING</span>
+                    <span className="select-none"> {percent}%</span>
                   </>
                 )}
               </div>

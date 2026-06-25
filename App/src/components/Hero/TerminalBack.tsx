@@ -57,7 +57,7 @@ export default function TerminalBack() {
 
   return (
     <div
-      className="h-full absolute inset-0 rounded-xl border border-[#331c4e] bg-[#050208]/95 backdrop-blur-md shadow-2xl flex flex-col overflow-hidden text-[#cdd6f4]"
+      className="h-full absolute inset-0 rounded-xl border border-[#331c4e] bg-[#050208]/95 shadow-2xl flex flex-col overflow-hidden text-[#cdd6f4]"
       style={{
         transform: 'rotateY(180deg)',
         backfaceVisibility: 'hidden',
@@ -72,12 +72,12 @@ export default function TerminalBack() {
           <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
           <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
         </div>
-        <div className="text-xs text-[#bda0f8]/50 font-sans font-medium">portfolio ~ guest</div>
+        <div className="text-xs text-[#bda0f8]/50 font-mono font-medium">portfolio ~ guest</div>
         <div className="w-12" />
       </div>
 
       {/* Body */}
-      <div className="grow p-6 font-mono text-[13px] leading-relaxed lg:overflow-hidden overflow-y-auto text-left flex flex-col gap-5">
+      <div className="grow p-6 font-mono text-[14px] leading-relaxed lg:overflow-hidden overflow-y-auto text-left flex flex-col gap-5">
         
         {/* BLOQUE 1: whoami */}
         {startTyping && (
@@ -116,7 +116,7 @@ export default function TerminalBack() {
             </div>
 
             {showOutput2 && (
-              <div className="mt-3 pl-4 border-l-2 border-[#331c4e] text-[#efebd8]/80 text-justify max-w-105 font-sans text-xs leading-relaxed">
+              <div className="mt-3 pl-4 border-l-2 border-[#331c4e] text-[#efebd8]/80 text-left max-w-105 font-sans text-[14px] leading-relaxed">
                 <p>I am a Fullstack Developer and a System Engineering student at UTN, currently halfway through my degree.</p>
   <p>Beyond specific frameworks like TypeScript, React, and NestJS, I am deeply driven by robust system design, scalable infrastructure, and performance optimization.</p>
   <p>I don't just build features; I architect solutions. I am constantly learning, bridging the gap between academic theory and real-world engineering to deliver cleaner, more efficient systems.</p>
