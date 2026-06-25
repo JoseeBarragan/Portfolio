@@ -24,7 +24,7 @@ h1 {
   letter-spacing: 0.1em;
 }
 
-/* @property --x {
+@property --x {
   syntax: '<length>';
   inherits: false;
   initial-value: -999px;
@@ -34,11 +34,8 @@ h1 {
   syntax: '<length>';
   inherits: false;
   initial-value: -999px;
-} */
+} 
 
-/* .delayed-position {
-  transition: --x 345ms ease-out, --y 345ms ease-out;
-} */   
 
 @custom-variant dark (&:is(.dark *));
 
