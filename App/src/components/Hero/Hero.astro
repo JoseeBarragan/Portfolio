@@ -139,63 +139,55 @@ import TerminalBack from "./TerminalBack"
       const { x, y } = e.detail;
       lastMouseX = x;
       lastMouseY = y;
+
+      window.requestAnimationFrame(() => {
+        if (maskLayer) {
+          const rect = maskLayer.getBoundingClientRect();
+          gsap.to(maskLayer, {
+            '--x': `${x - rect.left}px`,
+            '--y': `${y - rect.top}px`,
+            duration: 0.19,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        }
+      
+        if (blobLayer) {
+          const rect = blobLayer.getBoundingClientRect();
+          gsap.to(blobLayer, {
+            '--x': `${x - rect.left}px`,
+            '--y': `${y - rect.top}px`,
+            duration: 0.19,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        }
+      
+        if (contributionsMask) {
+          const rect = contributionsMask.getBoundingClientRect();
+          gsap.to(contributionsMask, {
+            '--x': `${x - rect.left}px`,
+            '--y': `${y - rect.top}px`,
+            duration: 0.19,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        }
+      
+        if (techstackMask) {
+          const rect = techstackMask.getBoundingClientRect();
+          gsap.to(techstackMask, {
+            '--x': `${x - rect.left}px`,
+            '--y': `${y - rect.top}px`,
+            duration: 0.19,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        }
+      });
     }) as EventListener);
     
     const blobLeader = document.querySelector('#blob-container .blob-main .blob:first-child') as HTMLElement;
-
-    gsap.ticker.add(() => {
-
-      if (!blobLeader || !blobActive) return;
-
-      const blobRect = blobLeader.getBoundingClientRect();
-      const blobCenterX = blobRect.left + blobRect.width / 2;
-      const blobCenterY = blobRect.top + blobRect.height / 2;
-
-
-      if (maskLayer) {
-        const rect = maskLayer.getBoundingClientRect();
-        gsap.to(maskLayer, {
-          '--x': `${blobCenterX - rect.left}px`,
-          '--y': `${blobCenterY - rect.top}px`,
-          duration: 0.008,
-          ease: 'power3.out',
-          overwrite: true,
-        })
-      } 
-
-      if (blobLayer) {
-        const rect = blobLayer.getBoundingClientRect();
-        gsap.to(blobLayer, {
-          '--x': `${blobCenterX - rect.left}px`,
-          '--y': `${blobCenterY - rect.top}px`,
-          duration: 0.008,
-          ease: 'power3.out',
-          overwrite: true,
-        })
-      }
-
-      if(contributionsMask) {
-        const rect = contributionsMask.getBoundingClientRect()
-        gsap.to(contributionsMask, {
-          '--x': `${blobCenterX - rect.left}px`,
-          '--y': `${blobCenterY - rect.top}px`,
-          duration: 0.008,
-          ease: 'power3.out',
-          overwrite: true,
-        })
-      }
-
-      if(techstackMask) {
-        const rect = techstackMask.getBoundingClientRect()
-        gsap.to(techstackMask, {
-          '--x': `${blobCenterX - rect.left}px`,
-          '--y': `${blobCenterY - rect.top}px`,
-          duration: 0.008,
-          ease: 'power3.out',
-          overwrite: true,
-        })
-      }
-    });
 
     window.addEventListener('scroll', () => {
       window.requestAnimationFrame(() => {

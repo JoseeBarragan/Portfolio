@@ -36,7 +36,6 @@ h1 {
   initial-value: -999px;
 } 
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
