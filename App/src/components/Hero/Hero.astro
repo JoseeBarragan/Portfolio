@@ -134,87 +134,28 @@ import TerminalBack from "./TerminalBack"
 
     let blobActive = false;
 
+    const syncMaskLayer = (layer: HTMLElement | null, x: number, y: number) => {
+      if (!layer) return;
+
+      const rect = layer.getBoundingClientRect();
+      layer.style.setProperty('--x', `${x - rect.left}px`);
+      layer.style.setProperty('--y', `${y - rect.top}px`);
+    };
+
+    const syncAllMasks = (x: number, y: number) => {
+      syncMaskLayer(maskLayer, x, y);
+      syncMaskLayer(blobLayer, x, y);
+      syncMaskLayer(contributionsMask, x, y);
+      syncMaskLayer(techstackMask, x, y);
+    };
+
     window.addEventListener('blob-move', ((e: CustomEvent) => {
       blobActive = true;
       const { x, y } = e.detail;
       lastMouseX = x;
       lastMouseY = y;
-
-      window.requestAnimationFrame(() => {
-        if (maskLayer) {
-          const rect = maskLayer.getBoundingClientRect();
-          gsap.to(maskLayer, {
-            '--x': `${x - rect.left}px`,
-            '--y': `${y - rect.top}px`,
-            duration: 0.19,
-            ease: 'power3.out',
-            overwrite: true,
-          });
-        }
-      
-        if (blobLayer) {
-          const rect = blobLayer.getBoundingClientRect();
-          gsap.to(blobLayer, {
-            '--x': `${x - rect.left}px`,
-            '--y': `${y - rect.top}px`,
-            duration: 0.19,
-            ease: 'power3.out',
-            overwrite: true,
-          });
-        }
-      
-        if (contributionsMask) {
-          const rect = contributionsMask.getBoundingClientRect();
-          gsap.to(contributionsMask, {
-            '--x': `${x - rect.left}px`,
-            '--y': `${y - rect.top}px`,
-            duration: 0.19,
-            ease: 'power3.out',
-            overwrite: true,
-          });
-        }
-      
-        if (techstackMask) {
-          const rect = techstackMask.getBoundingClientRect();
-          gsap.to(techstackMask, {
-            '--x': `${x - rect.left}px`,
-            '--y': `${y - rect.top}px`,
-            duration: 0.19,
-            ease: 'power3.out',
-            overwrite: true,
-          });
-        }
-      });
+      syncAllMasks(x, y);
     }) as EventListener);
-
-    window.addEventListener('scroll', () => {
-      window.requestAnimationFrame(() => {
-
-        if (container && blobLayer) {
-          const rect = container.getBoundingClientRect();
-          blobLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
-          blobLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
-        }
-
-        if (aboutWrapper && maskLayer) {
-          const rect = maskLayer.getBoundingClientRect();
-          maskLayer.style.setProperty('--x', `${lastMouseX - rect.left}px`);
-          maskLayer.style.setProperty('--y', `${lastMouseY - rect.top}px`);
-        }
-
-        if (contributionsWrapper && contributionsMask) {
-          const rect = contributionsWrapper.getBoundingClientRect()
-          contributionsMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
-          contributionsMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
-        }
-
-        if (techstackWrapper && techstackMask) {
-          const rect = techstackWrapper.getBoundingClientRect()
-          techstackMask.style.setProperty('--x', `${lastMouseX - rect.left}px`)
-          techstackMask.style.setProperty('--y', `${lastMouseY - rect.top}px`)
-        }
-      });
-    }, { passive: true });
 
     if (!container || !heroCard || !heroWrapper) return
  

@@ -44,8 +44,6 @@ export default function BlobCursor({
       const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
       const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
 
-      window.dispatchEvent(new CustomEvent('blob-move', { detail: { x, y } }));
-
       blobsRef.current.forEach((el, i) => {
         if (!el) return;
         const isLead = i === 0;
@@ -151,7 +149,22 @@ export default function BlobCursor({
     window.addEventListener("blob-appear", handleMouseEnter)
     document.documentElement.addEventListener('mouseleave', handleMouseLeave)
     document.documentElement.addEventListener('mouseenter', handleMouseEnter)
+
+    const syncBlobPosition = () => {
+      const leadBlob = blobsRef.current[0]
+      if (!leadBlob) return
+
+      const rect = leadBlob.getBoundingClientRect()
+      const x = rect.left + rect.width / 2
+      const y = rect.top + rect.height / 2
+
+      window.dispatchEvent(new CustomEvent('blob-move', { detail: { x, y } }))
+    }
+
+    gsap.ticker.add(syncBlobPosition)
+
     return () => {
+      gsap.ticker.remove(syncBlobPosition)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('mousemove', handleMove)
       window.removeEventListener('touchmove', handleMove)
