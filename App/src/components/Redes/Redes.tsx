@@ -59,18 +59,8 @@ export default function SocialBar() {
           ref={containerRef}
           onMouseEnter={handleContainerEnter}
           onMouseLeave={handleLeave}
-          className='hidden md:fixed'
-          style={{
-            left: '1rem',
-            top: '82%',
-            transform: 'translateY(-50%)',
-            zIndex: 900,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem',
-            padding: '0.75rem',
-            alignItems: 'center',
-          }}>
+          className="hidden md:flex fixed left-4 top-[82%] -translate-y-1/2 z-900 flex-col gap-2 p-3 items-center"
+        >
 
         {socials.map((s, i) => (
           <a
