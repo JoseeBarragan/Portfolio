@@ -134,10 +134,20 @@ import TerminalBack from "./TerminalBack"
 
     let blobActive = false;
 
+    const maskRects = new Map<HTMLElement, DOMRect>();
+    const cacheRects = () => {
+      [maskLayer, blobLayer, contributionsMask, techstackMask].forEach((el) => {
+        if (el) maskRects.set(el, el.getBoundingClientRect());
+      });
+    };
+    cacheRects();
+    window.addEventListener('resize', cacheRects);
+    window.addEventListener('scroll', cacheRects, { passive: true });
+
     const syncMaskLayer = (layer: HTMLElement | null, x: number, y: number) => {
       if (!layer) return;
 
-      const rect = layer.getBoundingClientRect();
+      const rect = maskRects.get(layer) ?? layer.getBoundingClientRect();
       layer.style.setProperty('--x', `${x - rect.left}px`);
       layer.style.setProperty('--y', `${y - rect.top}px`);
     };
@@ -202,7 +212,7 @@ import TerminalBack from "./TerminalBack"
       )
  
       tl.to(heroCard,
-        { height: '70vh', ease: 'power1.inOut', duration: 0.4 },
+        { height: '65vh', ease: 'power1.inOut', duration: 0.4 },
         0.6
       )
  

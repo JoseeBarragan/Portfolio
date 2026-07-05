@@ -1,0 +1,38 @@
+.simple-border-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.simple-border-glow__ring {
+  position: absolute;
+  inset: -6px; /* qué tan grande es el halo de glow hacia afuera */
+  border-radius: inherit;
+  filter: blur(10px);
+  opacity: 0.9;
+  animation-name: sbg-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  z-index: -1;
+}
+
+.simple-border-glow__content {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+@keyframes sbg-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simple-border-glow__ring {
+    animation: none;
+  }
+}

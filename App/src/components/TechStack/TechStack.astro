@@ -41,8 +41,17 @@ async function getContributions(user: string) {
 
 const weeks = await getContributions(username);
 
-// Lista de meses abreviados para la cabecera de la grilla
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const monthLabels = weeks.reduce((acc: { name: string, index: number }[], week: any, index: number) => {
+  const firstDay = new Date(week.contributionDays[0].date);
+  const monthName = firstDay.toLocaleString('default', { month: 'short' });
+  
+  // Si es el primer mes o es un mes nuevo, lo añadimos a la lista
+  if (acc.length === 0 || acc[acc.length - 1].name !== monthName) {
+    acc.push({ name: monthName, index: index });
+  }
+  return acc;
+}, []);
+
 ---
 
 <section id="stack" class="w-full md:pl-20 lg:pl-16 xl:pl-0 relative min-h-screen flex flex-col items-center justify-center gap-16 py-20"
@@ -102,7 +111,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
         <div class="flex flex-col gap-1.5 flex-1">
           
           <div class="flex justify-between text-[10px] text-white/40 font-medium px-1 select-none">
-            {months.map((month) => <span>{month}</span>)}
+            {monthLabels.map((label) => <span>{label.name}</span>)}
           </div>
 
           <div class="flex gap-0.75">
