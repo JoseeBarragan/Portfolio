@@ -109,12 +109,9 @@ import TerminalBack from "./TerminalBack"
  
   document.addEventListener('DOMContentLoaded', () => {
     const heroCard    = document.getElementById('hero-card')
-    const techstackWrapper = document.getElementById('techstack-label-wrapper')
     const techstackMask    = document.getElementById('techstack-mask-layer')
     const heroWrapper = document.getElementById('hero-terminal-wrapper')
-    const aboutWrapper = document.getElementById('right-about-text')
     const maskLayer    = document.getElementById('about-mask-layer')
-    const contributionsWrapper = document.getElementById('contributions-label-wrapper')
     const contributionsMask    = document.getElementById('contributions-mask-layer')
     const container = document.getElementById('hero-text-wrapper');
     const blobLayer = document.getElementById('blob-layer');
@@ -176,7 +173,7 @@ import TerminalBack from "./TerminalBack"
  
     mm.add('(min-width: 1024px)', () => {
       const wrapperRect = heroWrapper.getBoundingClientRect()
-      const leftX = -(wrapperRect.left - 125)
+      const leftX = -(wrapperRect.left - 120)
  
       const viewportHeight = window.innerHeight
       const downY = viewportHeight * 1.0 
@@ -212,7 +209,7 @@ import TerminalBack from "./TerminalBack"
       )
  
       tl.to(heroCard,
-        { height: '65vh', ease: 'power1.inOut', duration: 0.4 },
+        { height: '60vh', ease: 'power1.inOut', duration: 0.4 },
         0.6
       )
  

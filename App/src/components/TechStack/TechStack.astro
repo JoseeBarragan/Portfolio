@@ -111,7 +111,7 @@ const monthLabels = weeks.reduce((acc: { name: string, index: number }[], week: 
         <div class="flex flex-col gap-1.5 flex-1">
           
           <div class="flex justify-between text-[10px] text-white/40 font-medium px-1 select-none">
-            {monthLabels.map((label) => <span>{label.name}</span>)}
+            {monthLabels.map((label: {name: string}) => <span>{label.name}</span>)}
           </div>
 
           <div class="flex gap-0.75">
@@ -129,7 +129,7 @@ const monthLabels = weeks.reduce((acc: { name: string, index: number }[], week: 
                       'bg-[#f472b6] shadow-[0_0_18px_rgba(244,114,182,0.9)]'; // Rosa/Fucsia neón (Actividad máxima)                    
                     return (
                       <div 
-                        class={`w-2.75 h-2.75 sm:w-2.75 sm:h-2.75 rounded-xs transition-all duration-300 hover:scale-125 hover:z-20 cursor-pointer ${color}`} 
+                        class={`w-2.75 h-2.75 sm:w-2.75 sm:h-2.75 rounded-xs transition-all duration-300 hover:scale-125 hover:z-20 ${color}`} 
                         title={`${count} contribuciones el ${day.date}`}
                       />
                     );

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
 export default function SimpleMarquee({
-  text,
+  text = "",
   speed = 60, // px por segundo, aprox
   direction = 'left', // 'left' | 'right'
   className = '',

@@ -7,7 +7,7 @@ import GymImage from "../../assets/try1.png";
   id="work" 
   class="relative w-full min-h-screen py-24 px-4 md:px-10 lg:pl-28 overflow-hidden flex flex-col items-center justify-center"
 >
-  
+ 
   <div 
     class="absolute inset-0 w-full h-full pointer-events-none bg-[#0d0010] z-0"
     style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%); mask-image: linear-gradient(to bottom, transparent 0%, black 20%);"
@@ -44,110 +44,100 @@ import GymImage from "../../assets/try1.png";
       >
         
         <div class="carousel-item w-full md:max-w-125 shrink-0 custom-item">
-          <BorderGlow
-            edgeSensitivity={100}
-            glowColor="40 80 80"
-            backgroundColor="#120F17"
-            borderRadius={16}
-            glowRadius={40}
-            glowIntensity={1.5}
-            coneSpread={25}
-            colors={['#c084fc', '#f472b6', '#38bdf8']}
-            client:visible
-          >
-            <div class="flex flex-col h-full min-h-130 justify-between p-6 text-zinc-100">
-              <div>
-                <div class="w-full h-48 bg-zinc-900 rounded-t-2xl overflow-hidden">
-                  <img
-                    src=""
-                    alt="Preview del proyecto"
-                    class="w-full h-full object-cover object-[center_20%]"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div class="flex items-center justify-between my-4">
-                  <h3 class="text-xl font-bold text-white">Restaurant Management</h3>
-                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
-                </div>
-                <p class="text-sm text-zinc-400 leading-relaxed">
-                  Fullstack app that lets customers scan a QR code at their table to browse the menu, place orders and pay. Includes a dashboard for waiters, kitchen staff and admins.
-                </p>
-              </div>
-              <div>
-                <div class="flex flex-wrap gap-2 my-4">
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">React</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">TypeScript</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Node.js</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Tailwind CSS</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">JWT</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Mercado Pago API</span>
-                </div>                
-                <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
-                  <a href="https://github.com/ShakirChaya0/Fullstack-app" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200">
-                    GitHub
-                  </a>
-                </div>
+          <div class="glow-card">
+              <div class="glow-card__border">
+                <div class="glow-card__spot"></div>
+              </div>          
+              <div class="glow-card__inner">            
+                <div class="flex flex-col h-full min-h-130 justify-between p-6 text-zinc-100">
+                  <div>
+                    <div class="w-full h-48 bg-zinc-900 rounded-t-2xl overflow-hidden">
+                      <img
+                        src=""
+                        alt="Preview del proyecto"
+                        class="w-full h-full object-cover object-[center_20%]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="flex items-center justify-between my-4">
+                      <h3 class="text-xl font-bold text-white">Restaurant Management</h3>
+                      <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                      Fullstack app that lets customers scan a QR code at their table to browse the menu, place orders and pay. Includes a dashboard for waiters, kitchen staff and admins.
+                    </p>
+                  </div>
+                  <div>
+                    <div class="flex flex-wrap gap-2 my-4">
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">React</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">TypeScript</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Node.js</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Tailwind CSS</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">JWT</span>
+                      <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Mercado Pago API</span>
+                    </div>                
+                    <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
+                      <a href="https://github.com/ShakirChaya0/Fullstack-app" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200">
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
               </div>
             </div>
-          </BorderGlow>
+          </div>
         </div>
 
         <div class="carousel-item w-full md:max-w-125 shrink-0 custom-item">
-          <BorderGlow
-            edgeSensitivity={100}
-            glowColor="40 80 80"
-            backgroundColor="#120F17"
-            borderRadius={16}
-            glowRadius={40}
-            glowIntensity={1.5}
-            coneSpread={25}
-            colors={['#c084fc', '#f472b6', '#38bdf8']}
-            client:visible
-          >
-            <div class="flex flex-col h-full min-h-130 justify-between p-6 text-zinc-100">
-              <div>
-                <div class="w-full h-48 bg-zinc-900 rounded-t-2xl overflow-hidden">
-                  <img
-                    src={GymImage.src}
-                    alt="Preview Gym Management System"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
+          <div class="glow-card">
+            <div class="glow-card__border">
+              <div class="glow-card__spot"></div>
+            </div>            
+            <div class="glow-card__inner">
+              <div class="flex flex-col h-full min-h-130 justify-between p-6 text-zinc-100">
+                <div>
+                  <div class="w-full h-48 bg-zinc-900 rounded-t-2xl overflow-hidden">
+                    <img
+                      src={GymImage.src}
+                      alt="Preview Gym Management System"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="flex items-center justify-between my-4">
+                    <h3 class="text-xl font-bold text-white">Gym Management System</h3>
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
+                  </div>
+                  <p class="text-sm text-zinc-400 leading-relaxed">
+                    Fullstack gym management app with role-based access control for admins, instructors and members. Handles class scheduling, reservations, membership tracking and payments via Stripe.
+                  </p>
                 </div>
-                <div class="flex items-center justify-between my-4">
-                  <h3 class="text-xl font-bold text-white">Gym Management System</h3>
-                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
-                </div>
-                <p class="text-sm text-zinc-400 leading-relaxed">
-                  Fullstack gym management app with role-based access control for admins, instructors and members. Handles class scheduling, reservations, membership tracking and payments via Stripe.
-                </p>
-              </div>
-              <div>
-                <div class="flex flex-wrap gap-2 my-4">
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">NestJS</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">React</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">TypeScript</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Stripe</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Docker</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Redis</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">JWT</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Tailwind CSS</span>
-                  <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Vite</span>
-                </div>
-                <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
-                  <a href="https://github.com/JoseeBarragan/Gym-Proyect" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200">
-                    GitHub
-                  </a>
+                <div>
+                  <div class="flex flex-wrap gap-2 my-4">
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">NestJS</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">React</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">TypeScript</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Stripe</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Prisma</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">PostgreSQL</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Docker</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Redis</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">JWT</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Tailwind CSS</span>
+                    <span class="px-2 py-1 text-[10px] rounded-md bg-zinc-800/50 text-zinc-300 border border-zinc-700/30">Vite</span>
+                  </div>
+                  <div class="flex items-center justify-between pt-4 border-t border-zinc-800/50">
+                    <a href="https://github.com/JoseeBarragan/Gym-Proyect" class="px-4 py-2 text-xs font-medium text-zinc-950 bg-zinc-100 hover:scale-105 hover:bg-white rounded-full transition-all duration-200">
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </BorderGlow>
+          </div>
         </div>
 
       </div>
@@ -184,49 +174,6 @@ import GymImage from "../../assets/try1.png";
   <div class="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-[#0f0111] to-transparent z-10 pointer-events-none"></div>
 </section>
 
-<style>
-  /* Por debajo de 1250px forzamos comportamiento de carrusel unitario centrado */
-  @media (max-width: 1249px) {
-    .carousel-container {
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: flex-start; /* Dejar que empiece desde la izquierda para que el cálculo matemático de GSAP sea exacto */
-    }
-    .dynamic-track {
-      display: flex;
-      width: max-content; 
-      gap: 32px; 
-      will-change: transform;
-    }
-    .custom-item {
-      /* Controlamos el ancho exacto de la card en mobile y desktop pequeño */
-      width: calc(100vw - 48px) !important;
-      max-width: 500px !important;
-    }
-  }
-
-  /* Por encima de 1250px se desarma el slider y se muestran fijos uno al lado del otro */
-  @media (min-width: 1250px) {
-    .carousel-container {
-      overflow: visible;
-    }
-    .dynamic-track {
-      transform: none !important;
-      justify-content: center;
-      gap: 48px;
-      width: 100%;
-    }
-    .custom-item {
-      shrink: 1 !important;
-    }
-    #carousel-controls {
-      display: none !important;
-    }
-  }
-</style>
-
 <script>
   import { gsap } from "gsap";
 
@@ -241,139 +188,31 @@ import GymImage from "../../assets/try1.png";
   const totalItems = items.length;
   const BREAKPOINT = 1250;
 
-  if (track && prevBtn && nextBtn && container) {
     
-    const updateCarousel = () => {
-      if (window.innerWidth >= BREAKPOINT) {
-        gsap.killTweensOf([track, ...items]);
-        gsap.set([track, items], { clearProps: "all" });
-        return;
-      }
+  document.querySelectorAll('.glow-card').forEach((card) => {
+    let rect = (card as HTMLElement).getBoundingClientRect();
+    let rafPending = false;
+    let lastEvent: MouseEvent | null = null;
 
-      const containerWidth = container.offsetWidth;
-      const itemWidth = (items[0] as HTMLElement).offsetWidth;
-      const gap = 32; // gap-8
-      
-      /* LA MAGIA DEL CENTRADO:
-        1. Calculamos el espacio sobrante en los laterales de la pantalla: (containerWidth - itemWidth) / 2
-        2. Le restamos la posición acumulada de las tarjetas anteriores: - (currentIndex * (itemWidth + gap))
-      */
-      const initialOffset = (containerWidth - itemWidth) / 2;
-      const moveX = initialOffset - currentIndex * (itemWidth + gap);
-
-      // Desplazamiento ultra suave al centro exacto
-      gsap.to(track, {
-        x: moveX,
-        duration: 0.55,
-        ease: "power2.out",
-        overwrite: "auto"
-      });
-
-      // Opacidad y escala premium para la tarjeta enfocada
-      items.forEach((item, i) => {
-        gsap.to(item, {
-          opacity: i === currentIndex ? 1 : 0.25,
-          scale: i === currentIndex ? 1 : 0.95,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-
-      // Sincronizar los puntitos (dots)
-      dots.forEach((dot, i) => {
-        if (i === currentIndex) {
-          dot.classList.remove('bg-zinc-700');
-          dot.classList.add('bg-purple-500', 'w-4');
-        } else {
-          dot.classList.remove('bg-purple-500', 'w-4');
-          dot.classList.add('bg-zinc-700');
-        }
-      });
-    };
-
-    // Eventos de navegación
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (currentIndex < totalItems - 1) {
-        currentIndex++;
-        updateCarousel();
-      } else {
-        // Efecto rebote sutil si ya no hay más elementos adelante
-        gsap.to(track, { x: "-=15", duration: 0.1, yoyo: true, repeat: 1 });
-      }
+    card.addEventListener('mouseenter', () => {
+      rect = (card as HTMLElement).getBoundingClientRect();
     });
 
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      } else {
-        // Efecto rebote sutil si intenta ir atrás del primero
-        gsap.to(track, { x: "+=15", duration: 0.1, yoyo: true, repeat: 1 });
-      }
+    card.addEventListener('mousemove', (e) => {
+      lastEvent = e as MouseEvent;
+      if (rafPending) return;
+      rafPending = true;
+
+      requestAnimationFrame(() => {
+        rafPending = false;
+        if (!lastEvent) return;
+        const x = lastEvent.clientX - rect.left;
+        const y = lastEvent.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--glow-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--glow-y', `${y}px`);      
+      });
     });
-
-    // Inicializar y recalcular en resize de forma reactiva
-    updateCarousel();
-    window.addEventListener('resize', updateCarousel);
-  }
-</script><style>
-  /* Por debajo de 1250px forzamos comportamiento de carrusel unitario centrado */
-  @media (max-width: 1249px) {
-    .carousel-container {
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: flex-start; /* Dejar que empiece desde la izquierda para que el cálculo matemático de GSAP sea exacto */
-    }
-    .dynamic-track {
-      display: flex;
-      width: max-content; 
-      gap: 32px; 
-      will-change: transform;
-    }
-    .custom-item {
-      /* Controlamos el ancho exacto de la card en mobile y desktop pequeño */
-      width: calc(100vw - 48px) !important;
-      max-width: 500px !important;
-    }
-  }
-
-  /* Por encima de 1250px se desarma el slider y se muestran fijos uno al lado del otro */
-  @media (min-width: 1250px) {
-    .carousel-container {
-      overflow: visible;
-    }
-    .dynamic-track {
-      transform: none !important;
-      justify-content: center;
-      gap: 48px;
-      width: 100%;
-    }
-    .custom-item {
-      shrink: 1 !important;
-    }
-    #carousel-controls {
-      display: none !important;
-    }
-  }
-</style>
-
-<script>
-  import { gsap } from "gsap";
-
-  const container = document.querySelector('.carousel-container') as HTMLDivElement;
-  const track = document.getElementById('carousel-track') as HTMLDivElement;
-  const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
-  const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
-  const dots = document.querySelectorAll('#carousel-dots span');
-  const items = document.querySelectorAll('.carousel-item');
-
-  let currentIndex = 0;
-  const totalItems = items.length;
-  const BREAKPOINT = 1250;
+  });
 
   if (track && prevBtn && nextBtn && container) {
     
@@ -453,3 +292,100 @@ import GymImage from "../../assets/try1.png";
     window.addEventListener('resize', updateCarousel);
   }
 </script>
+<style>
+
+  .glow-card {
+    position: relative;
+    height: 100%;
+    border-radius: 16px;
+    isolation: isolate;
+  }
+
+  .glow-card a:focus-visible {
+    outline-offset: 2px; /* o el estilo que prefieras, no lo quites del todo por accesibilidad */
+  }
+
+  .glow-card__border {
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    overflow: hidden; /* recorta el spot para que solo se vea en el marco */
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .glow-card:hover .glow-card__border {
+    opacity: 1;
+  }
+
+  .glow-card__spot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    margin-left: -300px;
+    margin-top: -300px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      #c084fc,
+      #f472b6 45%,
+      #38bdf8 75%,
+      transparent 100%
+    );
+    will-change: transform;
+    transform: translate3d(var(--glow-x, -999px), var(--glow-y, -999px), 0); 
+  }
+
+  .glow-card__inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    border-radius: 14px;
+    background: #120f17;
+  } 
+
+  /* Por debajo de 1250px forzamos comportamiento de carrusel unitario centrado */
+  @media (max-width: 1249px) {
+    .carousel-container {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: flex-start; /* Dejar que empiece desde la izquierda para que el cálculo matemático de GSAP sea exacto */
+    }
+    .dynamic-track {
+      display: flex;
+      width: max-content; 
+      gap: 32px; 
+      will-change: transform;
+    }
+    .custom-item {
+      /* Controlamos el ancho exacto de la card en mobile y desktop pequeño */
+      width: calc(100vw - 48px) !important;
+      max-width: 500px !important;
+    }
+  }
+
+  /* Por encima de 1250px se desarma el slider y se muestran fijos uno al lado del otro */
+  @media (min-width: 1250px) {
+    .carousel-container {
+      overflow: visible;
+    }
+    .dynamic-track {
+      transform: none !important;
+      justify-content: center;
+      gap: 48px;
+      width: 100%;
+    }
+    .custom-item {
+      shrink: 1 !important;
+    }
+    #carousel-controls {
+      display: none !important;
+    }
+  }
+</style>
