@@ -2,6 +2,7 @@
 import BlobCursor from "@/components/externalComponents/BlobCursor";
 import Loader from "@/components/Loader";
 import Redes from "@/components/Redes/Redes";
+import Header from '@/components/Header/Header';
 ---
 
 <!doctype html>
@@ -11,7 +12,16 @@ import Redes from "@/components/Redes/Redes";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="José Barragán — Fullstack Developer especializado en NestJS, React y TypeScript. Mirá mis proyectos y contactame." />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<title>José Barragán | Fullstack Developer</title>
+
+		  <!-- Favicon -->
+		<link rel="icon" type="image/png" href="../../public/jb_avatar_icon_v4_simple.svg"/>
+		  <!-- Open Graph / Social preview -->
+		<meta property="og:title" content="José Barragán | Fullstack Developer" />
+		<meta property="og:description" content="Fullstack Developer especializado en NestJS, React y TypeScript." />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="/og-image.png" />	
 	</head>
 	<body class="min-h-full min-w-full">
 		<div class="hidden lg:block">
@@ -32,11 +42,12 @@ import Redes from "@/components/Redes/Redes";
 			  fastDuration={0.4}
 			  slowDuration={0.1}
 			  zIndex={900}
-			  client:load
+			  client:media="(min-width: 1024px)"
 			/>
 		</div>
-		<Loader client:visible /> 
-		<Redes client:idle />
+		<Loader client:load /> 
+		<Header client:visible/>
+		<Redes client:visible />
 		<slot />
 	</body>
 </html>
