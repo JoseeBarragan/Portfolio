@@ -21,11 +21,15 @@ export default function Header() {
         // Usamos el height forzado si se pasa (como en el logo), si no, usamos el del elemento
         const targetHeight = forceHeight !== undefined ? forceHeight : rect.height;
         window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: targetHeight, width: rect.width, radius: '36px' } }))
+        const blob = document.getElementById("blob-container") 
+        if (blob) blob.style.zIndex = "1000"
     }
 
     const handleLeave = () => {
       window.dispatchEvent(new CustomEvent('blob-scale', { detail: { height: 45, width: 45, radius: '24px' } }))
       window.dispatchEvent(new CustomEvent('blob-release'))
+      const blob = document.getElementById("blob-container") 
+      if (blob) blob.style.zIndex = "900"
     }
 
     return (
