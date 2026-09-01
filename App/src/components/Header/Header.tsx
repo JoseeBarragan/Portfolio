@@ -1,4 +1,5 @@
 import { useRef } from "react"
+import MobileMenu from "./MobileMenu"
 
 export default function Header() {
     const logoRef = useRef<HTMLDivElement>(null)
@@ -33,7 +34,12 @@ export default function Header() {
     }
 
     return (
-        <header className="fixed top-0 left-0 z-1000 flex items-center md:px-5 lg:px-10 py-6 w-full">
+        <header className="fixed top-0 left-0 z-1000 flex items-center gap-4 px-4 md:px-5 lg:px-10 py-6 w-full">
+            {/* Hamburguesa - arriba a la izquierda */}
+            <div className="md:hidden">
+                <MobileMenu />
+            </div>
+
             <a href="#top" onClick={(e) => {
                 e.preventDefault(); // Evita el salto brusco del navegador
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,14 +49,14 @@ export default function Header() {
                     ref={logoRef} 
                     onMouseEnter={() => handleEnter(logoRef, 45)} 
                     onMouseLeave={handleLeave} 
-                    className="group flex items-center justify-center w-11.25 h-11.25 rounded-[36px] z-900"
+                    className="hidden group md:flex items-center justify-center w-11.25 h-11.25 rounded-[36px] z-900"
                 >
                     <p className="flex items-center justify-center z-900 font-medium text-white group-hover:text-black select-none cursor-pointer">JB</p>
                 </div>
             </a>
 
-            {/* Mail - centro absoluto */}
-            <a href="mailto:barraganseba@gmail.com" className="absolute left-1/2 -translate-x-1/2">
+            {/* Mail - centro absoluto (solo en pantallas grandes) */}
+            <a href="mailto:barraganseba@gmail.com" className="hidden md:block absolute left-1/2 -translate-x-1/2">
                 <div 
                     id="email" 
                     ref={emailRef} 
@@ -62,8 +68,8 @@ export default function Header() {
                 </div>
             </a>
 
-            {/* Nav - derecha */}
-            <div className="flex xl:gap-14 ml-auto justify-between">
+            {/* Nav - derecha (solo en pantallas grandes) */}
+            <div className="hidden md:flex xl:mdddd4 ml-auto justify-between">
                 <a href="#about">
                     <div className="group px-3 py-2 cursor-pointer" ref={aboutRef} onMouseEnter={() => handleEnter(aboutRef)} onMouseLeave={handleLeave}>
                         <p className="text-white group-hover:text-black font-medium select-none">ABOUT</p>
